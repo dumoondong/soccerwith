@@ -175,4 +175,30 @@ public class LoginDAO {
 		}	
 		return flag;
 	}
+	
+	public int changepw(LoginTO to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int flag = 0;
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "update member set password=? where id=?";
+			pstmt = conn.prepareStatement( sql );
+			pstmt.setString( 1, to.getPassword() );
+			pstmt.setString( 2, to.getId() );
+			
+			int result = pstmt.executeUpdate();
+			if( result == 0 ) {
+				flag = 1;
+			}
+		} catch( SQLException e ) {
+			System.out.println("[에러] " + e.getMessage() );
+		} finally {
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}	
+		return flag;
+	}
 }

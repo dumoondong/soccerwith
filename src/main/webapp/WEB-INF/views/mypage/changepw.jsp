@@ -47,17 +47,25 @@
 	<main>
 	<div class="container" style="text-align: center;">
 		<h2 class="mt-4">비밀번호변경</h2>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">ID</div>
-			<div class="col-md-6 themed-grid-col"></div>
-		</div>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">회원등급</div>
-			<div class="col-md-6 themed-grid-col"></div>
-		</div>
+		<form action="changepw_ok.do" method="post" name="wfrm" class="was-validated">
+			<input type="hidden" name="id" value="<%=loginUser %>" />
+		    <div class="form-group">
+		      <input type="password" class="form-control" name="password1" placeholder="변경할 비밀번호" id="password1" required>
+		      <div class="valid-feedback">감사합니다.</div>
+		      <div class="invalid-feedback">입력하셔야 합니다.</div>
+		    </div>
+		    <br />
+		    <div class="form-group">
+		      <input type="password" class="form-control" name="password2" placeholder="변경할 비밀번호 확인" id="password2" required>
+		      <div class="valid-feedback">감사합니다.</div>
+		      <div class="invalid-feedback">입력하셔야 합니다.</div>
+		    </div>
+		    <br />
+		    <button type="submit" id="submit1" class="btn btn-primary">Submit</button>
+	  	</form>
+			
 	</div>
 	</main>
-	
 	<script>
 	let arrow = document.querySelectorAll(".arrow");
 	for (var i = 0; i < arrow.length; i++) {
@@ -72,6 +80,21 @@
 	sidebarBtn.addEventListener("click", ()=>{
 		sidebar.classList.toggle("close");
 	});
+	
+	window.onload = function() {
+		document.getElementById('submit1').onclick = function() {
+			if( document.wfrm.password1.value.trim() != document.wfrm.password2.value.trim() ) {
+				alert( '비밀번호가 일치하지 않습니다.' );
+				return false;
+			}
+			if(document.wfrm.password1.value.trim().length < 6){
+				alert( '비밀번호 6자이상 입력합니다.' );
+				return false;
+			}
+			document.wfrm.submit();
+		};
+	};
+  
 	</script>
 </body>
 </html>

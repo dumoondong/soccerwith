@@ -95,14 +95,14 @@
         <div class="iocn-link">
           <a href="./mypage.do?id=<%=loginUser%>">
             <i class='bx bx-id-card' ></i>
-            <span class="link_name">마이페이지</span>
+            <span class="link_name">내정보관리</span>
           </a>
           <i class='bx bxs-chevron-down arrow' ></i>
         </div>
 	  	        <ul class="sub-menu">
-	  	          <li><a class="link_name" href="#">마이페이지</a></li>
-	  	          <li><a href="./mypage.do?id=<%=loginUser%>">내정보보기</a></li>
-	  	          <li><a href="./checkpw.do?id=<%=loginUser%>">내정보변경</a></li>
+	  	          <li><a class="link_name" href="#">내정보관리</a></li>
+	  	          <li><a href="./mypage.do?id=<%=loginUser%>">내정보관리</a></li>
+	  	          <li><a href="./checkpw.do?id=<%=loginUser%>">비밀번호변경</a></li>
 	  	        </ul>     
 	   </li>
 	   <%

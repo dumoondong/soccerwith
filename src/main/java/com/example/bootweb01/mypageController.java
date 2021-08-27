@@ -21,12 +21,18 @@ public class mypageController {
 		LoginTO to = new LoginTO();
 		
 		to.setId(request.getParameter("id"));
+		System.out.println(request.getParameter("id"));
 		to = dao.mypageView( to );
 		
 		ModelAndView modelAndView = new ModelAndView( "mypage/mypage" );
 		modelAndView.addObject( "to", to );
 		return modelAndView;
 	}
+	@RequestMapping( "mypage_ok.do" )
+	public ModelAndView mypage_ok(HttpServletRequest request) {
+		return new ModelAndView("mypage/mypage_ok");
+	}
+	
 	@RequestMapping( "checkpw.do" )
 	public ModelAndView checkpw(HttpServletRequest request) {
 		return new ModelAndView("mypage/checkpw");
@@ -44,11 +50,29 @@ public class mypageController {
 		
 		ModelAndView modelAndView = new ModelAndView("mypage/checkpw_ok");
 		modelAndView.addObject( "flag", flag );
+		modelAndView.addObject("id", to.getId());
 		return modelAndView;
 	}
 	@RequestMapping( "changepw.do" )
 	public ModelAndView changepw(HttpServletRequest request) {
 		return new ModelAndView("mypage/changepw");
+	}
+	@RequestMapping( "changepw_ok.do" )
+	public ModelAndView changepw_ok(HttpServletRequest request) {
+		System.out.println( "checkpw_ok() 호출" );
+		
+		LoginTO to = new LoginTO();
+		to.setId(request.getParameter( "id" ) );
+		to.setPassword(request.getParameter( "password1" ) );
+		
+		System.out.println(request.getParameter( "id" ));
+		System.out.println(request.getParameter( "password1" ));
+		
+		int flag = dao.changepw(to);
+		
+		ModelAndView modelAndView = new ModelAndView("mypage/changepw_ok");
+		modelAndView.addObject( "flag", flag );
+		return modelAndView;
 	}
 	
 }

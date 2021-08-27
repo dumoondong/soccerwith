@@ -52,36 +52,43 @@
     </section>
     <br /><br /><br /><br />
 	<main>
-	<div class="container" style="text-align: center;">
-		<h2 class="mt-4">내정보보기</h2>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">ID</div>
-			<div class="col-md-6 themed-grid-col"><%=id %></div>
-		</div>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">회원등급</div>
-			<div class="col-md-6 themed-grid-col"><%=grade %></div>
-		</div>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">핸드폰번호</div>
-			<div class="col-md-6 themed-grid-col"><%=phone %></div>
-		</div>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">이메일</div>
-			<div class="col-md-6 themed-grid-col"><%=email %></div>
-		</div>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">이름</div>
-			<div class="col-md-6 themed-grid-col"><%=name %></div>
-		</div>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">작성게시글수</div>
-			<div class="col-md-6 themed-grid-col"><%=writeboa %></div>
-		</div>
-		<div class="row mb-3">
-			<div class="col-md-6 themed-grid-col">작성댓글수</div>
-			<div class="col-md-6 themed-grid-col"><%=writecom %></div>
-		</div>
+	<div class="container" style="margin-left: 850px;">
+		<h2 style="margin-left: 200px;"class="mt-4">내정보관리</h2>
+		<!-- <form action="mypage_ok.do" method="post" > -->
+			<div class="row mb-3" >
+				<div class="col-md-2 themed-grid-col">ID</div>
+				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=id %></div>
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">회원등급</div>
+				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=grade %></div>
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">핸드폰번호</div>
+				<input style="background-color:white" name = phone placeholder=<%=phone %> class="col-md-3 themed-grid-col" type="text" >
+				<input style="background-color:rgb(139, 152, 241)" type="submit" class="col-md-1 themed-grid-col"value="변경">
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">이메일</div>
+				<input style="background-color:white" name = email placeholder=<%=email %> class="col-md-3 themed-grid-col" type="text" >
+				<input style="background-color:rgb(139, 152, 241)" type="button" class="col-md-1 themed-grid-col"value="변경">
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">이름</div>
+				<input style="background-color:white" name = name placeholder=<%=name %> class="col-md-3 themed-grid-col" type="text" >
+				<input style="background-color:rgb(139, 152, 241)" type="submit" class="col-md-1 themed-grid-col"value="변경">
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">작성게시글수</div>
+				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=writeboa %></div>
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">작성댓글수</div>
+				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=writecom %></div>
+			</div>
+			<br /><br />
+		<!-- </form> -->
 	</div>
 	</main>
 	
