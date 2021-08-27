@@ -22,19 +22,15 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-	<!-- 상단메뉴 -->
-	<div style="background-color:white; class="container">
-		<jsp:include page="../admin_module/admin_topmenu.jsp" />
-	</div>
+	<jsp:include page="../admin_module/admin_topmenu.jsp" />
 	<!-- 왼쪽메뉴 -->
 	<div class="sidebar close">
 		<jsp:include page="../admin_module/admin_leftmenu.jsp" />
 	</div>
-	
+	<br /><br /><br />
     <section class="home-section" >
 	    <div class="home-content">
 		    <i class='bx bx-menu' ></i>
-		    <img src="./images/로고.PNG" float="right" width="200" height="200" title="반갑습니다. 어서오세요!"/>
 	    </div>
 	    
 	    <div class="text">관리자메뉴</div>

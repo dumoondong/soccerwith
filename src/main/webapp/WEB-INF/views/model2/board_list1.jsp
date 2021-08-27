@@ -62,18 +62,15 @@
 	</head>
 <body>
 	<!-- 상단메뉴 -->
-	<div style="background-color:white; class="container">
-		<jsp:include page="../module/topmenu.jsp" />
-	</div>
+	<jsp:include page="../module/topmenu.jsp" />
 	<!-- 왼쪽메뉴 -->
 	<div class="sidebar close">
 		<jsp:include page="../module/leftmenu.jsp" />
 	</div>
-	
+	<br /><br /><br />
 	<section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu' ></i>
-      <img src="./images/로고.PNG" float="right" width="200" height="200" title="반갑습니다. 어서오세요!"/>
     </div>
     <!-- 상단 디자인 -->
 		<br />

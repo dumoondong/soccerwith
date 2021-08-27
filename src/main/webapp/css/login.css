@@ -7,17 +7,21 @@
 }
 html,body{
   display: grid;
-  width: 104%;
-  place-items: center;
-  background: #f2f2f2;
-  /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
+  width: 0%;
+  background: #fafafa;
+  /*background: linear-gradient(-135deg, #c850c0, #4158d0); */
 }
 .main_div{
-  width: 365px;
-  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   padding: 30px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+  transform: translate(-50% , -50%);
+  background: #fff;
+  width: 400px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }
 .main_div .title{
   text-align: center;
@@ -72,21 +76,21 @@ form .input_box{
   height: 100%;
   width: 100%;
   outline: none;
-  border: 1px solid lightgrey;
+  border: 1px solid #c0c0c0;
   border-radius: 5px;
   padding-left: 45px;
   font-size: 17px;
   transition: all 0.3s ease;
 }
 .input_box input:focus{
-  border-color: #be2edd;
+  border-color: #0000ff;
 }
 .input_box .icon{
   position: absolute;
   top: 50%;
   left: 20px;
   transform: translateY(-50%);
-  color: grey;
+  color: #000000;
 }
 form .option_div{
   margin-top: 5px;
@@ -100,16 +104,16 @@ form .option_div{
 .option_div span{
   margin-left: 5px;
   font-size: 16px;
-  color: #333;
+  color: #ff0080;
 }
 .option_div .forget_div a{
   font-size: 16px;
-  color: #be2edd;
+  color: #000000;
 }
 .button input{
   padding-left: 0;
-  background: #be2edd;
-  color: #fff;
+  background: #000000;
+  color: #ffffff;
   border: none;
   font-size: 20px;
   font-weight: 500;
@@ -117,14 +121,14 @@ form .option_div{
   transition: all 0.3s linear;
 }
 .button input:hover{
-  background: #a720c5;
+  background: #0000ff;
 }
 form .sign_up{
   text-align: center;
   margin-top: 25px;
 }
 .sign_up a{
-  color: #be2edd;
+  color: #0080ff;
 }
 form a{
   text-decoration: none;

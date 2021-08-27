@@ -7,7 +7,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./css/menustyle2.css">
+    <!------<title> Website Layout | CodingLab</title>------>
+    <link rel="stylesheet" type="text/css" href="./css/topmenu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <!-- bootstrap css -->
@@ -22,10 +24,12 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+
 	<%
 	if(loginUser == null){
 	%>
 	<!-- 로그인 전 -->
+	<!--  
 	  <ul class="nav justify-content-end">
 	    <li class="nav-item">
 	      <a class="nav-link" href="login.do">로그인</a>
@@ -36,11 +40,25 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="#">아이디찾기</a>
 	    </li>
-	  </ul>	    
+	  </ul>	
+	-->   
+	<nav>
+	    <div class="menu">
+	      <div class="logo">
+	        <a href="main.do">SOCCERWITH</a>
+	      </div>
+	      <ul>
+	        <li><a href="login.do">로그인</a></li>
+	        <li><a href="registration.do">회원가입</a></li>
+	        <li><a href="#">아이디찾기</a></li>
+	      </ul>
+	    </div>
+  	</nav>
 	  <%
 	}else{
-	  %>
+	  %>  
 	<!-- 로그인 후 -->
+	<!-- 
 	  <ul class="nav justify-content-end">
 	    <h6 style="padding: 8px; color: navy;"><%=loginUser %>님 환영합니다</h6>
 	    <li class="nav-item">
@@ -53,6 +71,20 @@
 	      <a class="nav-link" href="service.do">고객센터</a>
 	    </li>
 	  </ul>	    
+	    -->
+	<nav>
+		<div class="menu">
+			<div class="logo">
+				<a href="main.do">SOCCERWITH</a>
+			</div>
+			<ul>
+				<li><a style="padding: 100px; color: white;"><%=loginUser %>님</a></li>
+				<li><a href="logout.do">로그아웃</a></li>
+				<li><a href="eventlist.do">이벤트</a></li>
+				<li><a href="service.do">고객센터</a></li>
+			</ul>
+		</div>
+	</nav>   
 	    
 	  <%
 	  }

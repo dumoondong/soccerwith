@@ -25,20 +25,23 @@
   </head>
   <body>
 	</br>
+	<!-- 상단메뉴 -->
+	<jsp:include page="../module/topmenu.jsp" />
 	<!-- 왼쪽메뉴 -->
 	<div class="sidebar close">
 		<jsp:include page="../module/leftmenu.jsp" />
 	</div>
+	<br /><br /><br />
     <section class="home-section" >
 	    <div class="home-content">
-	     <i class='bx bx-menu' ></i>
-	     <img src="./images/로고.PNG" float="right" width="200" height="200" title="반갑습니다. 어서오세요!"/>
+	     <i class='bx bx-menu' ></i> 
 	    </div>
     </section>
     
   <br /><br /><br /><br /><br /><br /><br /><br />
 	  <div class="main_div">
-	    <div class="title">로그인</div>
+	    <div style="font-size: 250%" class="title">SOCCERWITH</div>
+	    <br />
 	    <div class="social_icons">
 	      <a href="#"><i class="fab fa-facebook-f"></i> <span>Facebook</span></a>
 	      <a href="#"><i class="fab fa-twitter"></i><span>Twitter</span></a>

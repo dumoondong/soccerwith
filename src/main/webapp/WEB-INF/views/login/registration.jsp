@@ -8,9 +8,6 @@
     <!---<title> Responsive Registration Form | CodingLab </title>--->
     <link rel="stylesheet" type="text/css" href="./css/menustyle2.css">
     <link rel="stylesheet" type="text/css" href="./css/registration.css">
-    <!----<title>Login Form Design | CodeLab</title>---->
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" type="text/css" href="./css/login.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <!-- bootstrap css -->
@@ -25,14 +22,16 @@
 </head>
 <body>
 </br>
+  <!-- 상단메뉴 -->
+  <jsp:include page="../module/topmenu.jsp" />
   <!-- 왼쪽메뉴 -->
   <div class="sidebar close">
 	<jsp:include page="../module/leftmenu.jsp" />
   </div>
+  <br /><br /><br />
   <section class="home-section" >
     <div class="home-content">
       <i class='bx bx-menu' ></i>
-      <img src="./images/로고.PNG" float="right" width="200" height="200" title="반갑습니다. 어서오세요!"/>
     </div>
   </section>
   <br /><br /><br /><br /><br /><br /><br /><br />
@@ -104,7 +103,6 @@
 				alert( '비밀번호 6자이상 입력합니다.' );
 				return false;
 			}
-			document.wfrm.submit();
 		};
 	};
   
