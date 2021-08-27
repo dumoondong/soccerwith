@@ -24,7 +24,7 @@ public class loginController {
 	public ModelAndView login_ok(HttpServletRequest request) {
 		System.out.println( "login_ok() 호출" );
 		
-		LoginTO to = new LoginTO();
+		MemberTO to = new MemberTO();
 		to.setId(request.getParameter( "id" ) );
 		to.setPassword(request.getParameter( "password" ) );
 		
@@ -44,7 +44,7 @@ public class loginController {
 	public ModelAndView registration_ok(HttpServletRequest request) {
 		System.out.println( "registration_ok() 호출" );
 		
-		LoginTO to = new LoginTO();
+		MemberTO to = new MemberTO();
 		to.setId(request.getParameter( "id" ) );
 		to.setName(request.getParameter( "name" ) );
 		to.setEmail(request.getParameter( "email" ) );
@@ -61,9 +61,9 @@ public class loginController {
 	public ModelAndView idcheck(HttpServletRequest request) {
 		System.out.println( "idcheck() 호출" );
 		
-		LoginTO to = new LoginTO();
+		MemberTO to = new MemberTO();
 		to.setId(request.getParameter( "id" ) );
-		int flag = dao.checkpw(to);
+		int flag = dao.idcheck(to);
 
 		ModelAndView modelAndView = new ModelAndView("login/idcheck");
 		modelAndView.addObject( "flag", flag );

@@ -13,12 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class mypageController {
 	
 	@Autowired
-	private LoginDAO dao;
+	private mypageDAO dao;
 	
 	@RequestMapping( "mypage.do" )
 	public ModelAndView mypage(HttpServletRequest request) {
 		System.out.println( "mypage() 호출" );
-		LoginTO to = new LoginTO();
+		MemberTO to = new MemberTO();
 		
 		to.setId(request.getParameter("id"));
 		System.out.println(request.getParameter("id"));
@@ -42,7 +42,7 @@ public class mypageController {
 	public ModelAndView checkpw_ok(HttpServletRequest request) {
 		System.out.println( "checkpw_ok() 호출" );
 		
-		LoginTO to = new LoginTO();
+		MemberTO to = new MemberTO();
 		to.setId(request.getParameter( "id" ) );
 		to.setPassword(request.getParameter( "password" ) );
 		
@@ -61,7 +61,7 @@ public class mypageController {
 	public ModelAndView changepw_ok(HttpServletRequest request) {
 		System.out.println( "checkpw_ok() 호출" );
 		
-		LoginTO to = new LoginTO();
+		MemberTO to = new MemberTO();
 		to.setId(request.getParameter( "id" ) );
 		to.setPassword(request.getParameter( "password1" ) );
 		

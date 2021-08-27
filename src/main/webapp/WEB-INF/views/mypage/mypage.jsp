@@ -1,12 +1,12 @@
-<%@page import="com.example.bootweb01.LoginTO"%>
+<%@page import="com.example.bootweb01.MemberTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-	String loginUser = (String)session.getAttribute("loginUser");
+String loginUser = (String)session.getAttribute("loginUser");
 
 
-	LoginTO to = (LoginTO)request.getAttribute( "to" );
+	MemberTO to = (MemberTO)request.getAttribute( "to" );
 	String id = to.getId();
 	String grade = to.getGrade();
 	String phone = to.getPhone();
@@ -14,7 +14,6 @@
 	String name = to.getName();
 	String writeboa = to.getWriteboa();
 	String writecom = to.getWritecom();
-
 %>
 <html>
   <head>

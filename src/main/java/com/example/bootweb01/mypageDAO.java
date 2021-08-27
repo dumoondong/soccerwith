@@ -13,11 +13,41 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class LoginDAO {
+public class mypageDAO {
 	@Autowired
 	private DataSource dataSource;
 
-	public int memberJoinOk(MemberTO to) {
+	public MemberTO mypageView(MemberTO to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "select * from member where id=? ";
+			pstmt = conn.prepareStatement( sql );
+			pstmt.setString( 1, to.getId() );
+			
+			rs = pstmt.executeQuery();
+			if( rs.next() ) {
+				to.setId( rs.getString( "id" ) );
+				to.setGrade( rs.getString( "grade" ) );
+				to.setPhone( rs.getString( "phone" ) );
+				to.setEmail( rs.getString( "email" ) );
+				to.setName( rs.getString( "name" ) );
+				to.setWriteboa( rs.getString( "writeboa" ) );
+				to.setWritecom( rs.getString( "writecom" ) );
+			}
+		} catch( SQLException e ) {
+			System.out.println("[에러] " + e.getMessage() );
+		} finally {
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}	
+		return to;
+	}
+	public int checkpw(MemberTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -51,58 +81,22 @@ public class LoginDAO {
 		return flag;
 	}
 	
-	public int idcheck(MemberTO to) {
+	public int changepw(MemberTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		
-		int flag = -2;
+		int flag = 0;
 		try {
 			conn = this.dataSource.getConnection();
 			
-			String sql = "select * from member where id=? ";
+			String sql = "update member set password=? where id=?";
 			pstmt = conn.prepareStatement( sql );
-			pstmt.setString( 1, to.getId() );
-			
-			System.out.println(to.getId());
-			
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				if(rs.getString("id").equals(to.getId())) {					
-					flag = 0;
-				}else {
-					flag = 1;
-				}
-			}
-		} catch( SQLException e ) {
-			System.out.println("[에러] " + e.getMessage() );
-		} finally {
-			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
-			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
-		}	
-		return flag;
-	}
-	
-	public int regiOk(MemberTO to) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		int flag = 2;
-		try {
-			conn = this.dataSource.getConnection();
-			
-			String sql = "insert into member values ( 0, ?, ?, '일반회원', ?, ?, ?, 0,0  ) ";
-			pstmt = conn.prepareStatement( sql );
-			pstmt.setString( 1, to.getId() );
-			pstmt.setString( 2, to.getPassword() );
-			pstmt.setString( 3, to.getPhone() );
-			pstmt.setString( 4, to.getEmail() );
-			pstmt.setString( 5, to.getName() );
+			pstmt.setString( 1, to.getPassword() );
+			pstmt.setString( 2, to.getId() );
 			
 			int result = pstmt.executeUpdate();
-			if( result == 1 ) {
-				flag = 0;
+			if( result == 0 ) {
+				flag = 1;
 			}
 		} catch( SQLException e ) {
 			System.out.println("[에러] " + e.getMessage() );
