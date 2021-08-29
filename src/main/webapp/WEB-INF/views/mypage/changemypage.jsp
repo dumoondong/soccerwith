@@ -49,7 +49,7 @@ String loginUser = (String)session.getAttribute("loginUser");
     <br /><br /><br /><br />
 	<main>
 	<div class="container" style="margin-left: 850px;">
-		<h2 style="margin-left: 200px;"class="mt-4">내정보</h2>
+		<h2 style="margin-left: 200px;"class="mt-4">내정보관리</h2>
 		<!-- <form action="mypage_ok.do" method="post" > -->
 			<div class="row mb-3" >
 				<div class="col-md-2 themed-grid-col">ID</div>
@@ -59,33 +59,21 @@ String loginUser = (String)session.getAttribute("loginUser");
 				<div class="col-md-2 themed-grid-col">회원등급</div>
 				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=grade %></div>
 			</div>
-			<!-- 핸드폰변경 -->
-			<form action="mypage_phone.do" method="post" name="mfrm">
-				<div class="row mb-3">
-					<div class="col-md-2 themed-grid-col">핸드폰번호</div>
-					<input type="hidden" name="id" value="<%=id %>" />
-					<input style="background-color:white" name = "phone" placeholder=<%=phone %> class="col-md-2 themed-grid-col" type="text" >
-					<button type="submit" id="submit1" class="col-md-1 themed-grid-col">변경</button>
-				</div>
-			</form>
-			<!-- 이메일변경 -->
-			<form action="mypage_email.do" method="post" name="mfrm">
-				<div class="row mb-3">
-					<div class="col-md-2 themed-grid-col">이메일</div>
-					<input type="hidden" name="id" value="<%=id %>" />
-					<input style="background-color:white" name = "email" placeholder=<%=email %> class="col-md-2 themed-grid-col" type="text" >
-					<button type="submit" id="submit2" class="col-md-1 themed-grid-col">변경</button>
-				</div>
-			</form>
-			<!-- 이름변경 -->
-			<form action="mypage_name.do" method="post" name="mfrm">
-				<div class="row mb-3">
-					<div class="col-md-2 themed-grid-col">이름</div>
-					<input type="hidden" name="id" value="<%=id %>" />
-					<input style="background-color:white" name = "name" placeholder=<%=name %> class="col-md-2 themed-grid-col" type="text" >
-					<button type="submit" id="submit3" class="col-md-1 themed-grid-col">변경</button>
-				</div>
-			</form>
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">핸드폰번호</div>
+				<input style="background-color:white" name = phone placeholder=<%=phone %> class="col-md-3 themed-grid-col" type="text" >
+				<input style="background-color:rgb(139, 152, 241)" type="submit" class="col-md-1 themed-grid-col"value="변경">
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">이메일</div>
+				<input style="background-color:white" name = email placeholder=<%=email %> class="col-md-3 themed-grid-col" type="text" >
+				<input style="background-color:rgb(139, 152, 241)" type="button" class="col-md-1 themed-grid-col"value="변경">
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-2 themed-grid-col">이름</div>
+				<input style="background-color:white" name = name placeholder=<%=name %> class="col-md-3 themed-grid-col" type="text" >
+				<input style="background-color:rgb(139, 152, 241)" type="submit" class="col-md-1 themed-grid-col"value="변경">
+			</div>
 			<div class="row mb-3">
 				<div class="col-md-2 themed-grid-col">작성게시글수</div>
 				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=writeboa %></div>
@@ -94,12 +82,7 @@ String loginUser = (String)session.getAttribute("loginUser");
 				<div class="col-md-2 themed-grid-col">작성댓글수</div>
 				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=writecom %></div>
 			</div>
-			
-			<br />
-			<!--
-			 <input style="background-color:white; font-size: 18px; 
-					 border-radius: 25px; width: 100px; height: 40px; " 
-					 type="submit" value="변경하기"> -->
+			<br /><br />
 		<!-- </form> -->
 	</div>
 	</main>
@@ -118,31 +101,6 @@ String loginUser = (String)session.getAttribute("loginUser");
 	sidebarBtn.addEventListener("click", ()=>{
 		sidebar.classList.toggle("close");
 	});
-	
-	
-	window.onload = function() {
-		document.getElementById( 'submit1' ).onclick = function() {
-			if( document.mfrm.phone.value.trim() == '' ) {
-				alert( '변경할 핸드폰번호를 입력해야 합니다.' );
-				return false;
-			}
-			document.mfrm.submit();
-		};
-		document.getElementById( 'submit2' ).onclick = function() {
-			if( document.mfrm.phone.value.trim() == '' ) {
-				alert( '변경할 이메일을 입력해야 합니다.' );
-				return false;
-			}
-			document.mfrm.submit();
-		};
-		document.getElementById( 'submit3' ).onclick = function() {
-			if( document.mfrm.phone.value.trim() == '' ) {
-				alert( '변경할 이름을 입력해야 합니다.' );
-				return false;
-			}
-			document.mfrm.submit();
-		};
-	};
 	</script>
 </body>
 </html>

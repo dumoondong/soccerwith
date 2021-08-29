@@ -12,7 +12,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./css/mypage.css">
     <link rel="stylesheet" type="text/css" href="./css/menustyle2.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -48,13 +47,13 @@
 			<input type="hidden" name="id" value="<%=loginUser %>" />
 		    <div class="form-group">
 		      <input type="password" class="form-control" name="password1" placeholder="변경할 비밀번호" id="password1" required>
-		      <div class="valid-feedback">감사합니다.</div>
+		      <div class="valid-feedback"></div>
 		      <div class="invalid-feedback">입력하셔야 합니다.</div>
 		    </div>
 		    <br />
 		    <div class="form-group">
 		      <input type="password" class="form-control" name="password2" placeholder="변경할 비밀번호 확인" id="password2" required>
-		      <div class="valid-feedback">감사합니다.</div>
+		      <div class="valid-feedback"></div>
 		      <div class="invalid-feedback">입력하셔야 합니다.</div>
 		    </div>
 		    <br />

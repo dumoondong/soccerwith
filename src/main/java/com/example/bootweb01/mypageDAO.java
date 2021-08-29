@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 public class mypageDAO {
 	@Autowired
 	private DataSource dataSource;
-
+	//내정보
 	public MemberTO mypageView(MemberTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -47,6 +47,7 @@ public class mypageDAO {
 		}	
 		return to;
 	}
+	//비밀번호 확인
 	public int checkpw(MemberTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -80,7 +81,7 @@ public class mypageDAO {
 		}	
 		return flag;
 	}
-	
+	//비밀번호 변경
 	public int changepw(MemberTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -92,6 +93,84 @@ public class mypageDAO {
 			String sql = "update member set password=? where id=?";
 			pstmt = conn.prepareStatement( sql );
 			pstmt.setString( 1, to.getPassword() );
+			pstmt.setString( 2, to.getId() );
+			
+			int result = pstmt.executeUpdate();
+			if( result == 0 ) {
+				flag = 1;
+			}
+		} catch( SQLException e ) {
+			System.out.println("[에러] " + e.getMessage() );
+		} finally {
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}	
+		return flag;
+	}
+	//핸드폰 번호 변경
+	public int changephone(MemberTO to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int flag = 0;
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "update member set phone=? where id=?";
+			pstmt = conn.prepareStatement( sql );
+			pstmt.setString( 1, to.getPhone() );
+			pstmt.setString( 2, to.getId() );
+			
+			int result = pstmt.executeUpdate();
+			if( result == 0 ) {
+				flag = 1;
+			}
+		} catch( SQLException e ) {
+			System.out.println("[에러] " + e.getMessage() );
+		} finally {
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}	
+		return flag;
+	}
+	//이메일 변경
+	public int changeemail(MemberTO to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int flag = 0;
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "update member set email=? where id=?";
+			pstmt = conn.prepareStatement( sql );
+			pstmt.setString( 1, to.getEmail() );
+			pstmt.setString( 2, to.getId() );
+			
+			int result = pstmt.executeUpdate();
+			if( result == 0 ) {
+				flag = 1;
+			}
+		} catch( SQLException e ) {
+			System.out.println("[에러] " + e.getMessage() );
+		} finally {
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}	
+		return flag;
+	}
+	//이름 변경
+	public int changename(MemberTO to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int flag = 0;
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "update member set name=? where id=?";
+			pstmt = conn.prepareStatement( sql );
+			pstmt.setString( 1, to.getName() );
 			pstmt.setString( 2, to.getId() );
 			
 			int result = pstmt.executeUpdate();
