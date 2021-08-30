@@ -47,13 +47,13 @@
 	<nav>
 		<div class="menu">
 			<div class="logo">
-				<a href="main.do">SOCCERWITH</a>
+				<a href="">SOCCERWITH</a>
 			</div>
 			<ul>
 				<li><a style="padding: 100px; color: white;"><%=loginUser %>관리자님</a></li>
 				<li><a href="logout.do">로그아웃</a></li>
-				<li><a href="eventlist.do">이벤트</a></li>
-				<li><a href="service.do">고객센터</a></li>
+				<li><a href="">이벤트</a></li>
+				<li><a href="">고객센터</a></li>
 			</ul>
 		</div>
 	</nav>   

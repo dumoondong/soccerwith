@@ -115,7 +115,7 @@
 	   %> 
 	   <li>
        <div class="iocn-link">
-          <a href="/commoncode.do">
+          <a href="management.do">
             <i class='bx bx-cog' ></i>
             <span class="link_name">관리자메뉴</span>
           </a>
@@ -123,7 +123,7 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">관리자메뉴</a></li>
-          <li><a href="#">회원관리</a></li>
+          <li><a href="management.do">회원관리</a></li>
           <li><a href="commoncode.do">공통코드</a></li>
         </ul>
       </li>

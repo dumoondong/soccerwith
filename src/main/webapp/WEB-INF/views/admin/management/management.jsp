@@ -1,4 +1,4 @@
-<%@page import="com.example.bootweb01.LargecodeTO"%>
+<%@page import="com.example.bootweb01.MemberTO"%>
 <%@page import="com.example.bootweb01.SmallcodeTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,33 +8,40 @@
 	String loginUser = (String)session.getAttribute("loginUser");
 	String loginGrade = (String)session.getAttribute("loginGrade");
 
-	ArrayList<SmallcodeTO> datas = (ArrayList)request.getAttribute( "datas" ); // 소코드 리스트
-	ArrayList<LargecodeTO> datas1 = (ArrayList)request.getAttribute( "datas1" ); // 대코드 리스트
+	ArrayList<MemberTO> datas = (ArrayList)request.getAttribute( "datas" ); // 회원리스트
+	ArrayList<SmallcodeTO> datas1 = (ArrayList)request.getAttribute( "datas1" ); // 소코드 리스트
 	
-	StringBuilder sbHtml = new StringBuilder(); // 소코드 리스트
-	StringBuilder sbHtml1 = new StringBuilder(); // 대코드 검색
+	StringBuilder sbHtml = new StringBuilder(); // 회원 리스트 
+	StringBuilder sbHtml1 = new StringBuilder(); // 회원 등급 리스트
+	
+	
 	//대코드 검색창
-	for(LargecodeTO to : datas1) {
-		String seq = to.getSeq();
-		String largeinfo = to.getLargeinfo();
-		String largecode = to.getLargecode();
-		sbHtml1.append("<option name='"+largecode+"' value='"+largecode+"'>"+largeinfo+"</option>");
-	}
-	
-	//소코드 테이블 리스트
-	for( SmallcodeTO to : datas ) {
+	for(SmallcodeTO to : datas1) {
 		String seq = to.getSeq();
 		String smallcode = to.getSmallcode();
 		String smallinfo = to.getSmallinfo();
-		String smallremark = to.getSmallremark();
+		sbHtml1.append("<option name='"+smallcode+"' value='"+smallcode+"'>"+smallinfo+"</option>");
+	}
+	
+	//회원 테이블 리스트
+	for( MemberTO to : datas ) {
+		String seq = to.getSeq();
+		String id = to.getId();
+		String grade = to.getGrade();
+		String name = to.getName();
+		String phone = to.getPhone();
+		String email = to.getEmail();
 		
 		sbHtml.append( "<tr class='table-secondary'>" );
 		sbHtml.append( "	<td class='left'>" );
-		sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + smallcode + "</a>" );
-		sbHtml.append( "	<td>" + smallinfo + "</td>" );
-		sbHtml.append( "	<td>" + smallremark + "</td>" );
+		sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + id + "</a>" );
+		sbHtml.append( "	<td>" + grade + "</td>" );
+		sbHtml.append( "	<td>" + name + "</td>" );
+		sbHtml.append( "	<td>" + phone + "</td>" );
+		sbHtml.append( "	<td>" + email + "</td>" );
 		sbHtml.append( "</tr>" );
 	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -68,63 +75,31 @@
 	    </div>
     </section>
     <div align="middle">
-    	<ul style="width:200px; height: 70px; text-align: center;" class="nav nav-pills">
-		  <li class="nav-item">
-		     <a class="nav-link" href="decode.do">대코드</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link active" aria-current="page" href="#">소코드</a>
-		  </li>
-		</ul>
 		<!-- 대코드 검색 -->
+		<div style="width:60px; margin:0px 0px 70px 0px;"></div>
 		<form action="search_de.do?" method="get" name="mfrm">
 		    <select class="form-select" onchange="myFunction(this.value)" id="search" style="width:10%; height: 47px;"aria-label="Default select example">
-			  <option selected="selected">대코드 목록</option>
+			  <option selected="selected">등급선택</option> 
 			  	<%=sbHtml1 %>
 			</select>
 			<input type="hidden" name="largecode" id="largecode"/>
 			<input style="width:60px; margin:-70px 0px 0px 320px;" type="submit" value="검색" class="btn btn-secondary"/>
 		</form>
-		<br /><br />
-		<div style="margin:0px 0px 10px 900px;">
-			<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
- 			 추가</button>
-		</div>
+		<div style="width:60px; margin:0px 0px 96px 0px;"></div>
 		<table style="width:40%; text-align: center;" class="table table-hover">
 			<thead>
 				<tr>
-			      <th width="15%" scope="col">소코드</th>
-			      <th width="20%" scope="col">코드정보</th>
-			      <th width="20%" scope="col">비고</th>
+			      <th width="20%" scope="col">id</th>
+			      <th width="15%" scope="col">등급</th>
+			      <th width="15%" scope="col">이름</th>
+			      <th width="25%" scope="col">핸드폰번호</th>
+			      <th width="25%" scope="col">email</th>
 			    </tr>
 		    </thead>
 		 	<tbody>
 					<%=sbHtml %>
 		    </tbody>
 		</table>
-	</div>
-	
-	
-	
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">소코드 추가</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"></span>
-					</button>
-				</div>
-				<div class="modal-body">
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">추가</button>
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
 	</div>
   <script>
   let arrow = document.querySelectorAll(".arrow");

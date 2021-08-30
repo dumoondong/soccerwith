@@ -23,8 +23,8 @@ public class adminController {
 		ArrayList<LargecodeTO> datas1 = dao.LargecodeList();
 		ModelAndView modelAndView = new ModelAndView( "admin/commoncode/commoncode" );
 		
-		modelAndView.addObject( "datas", datas );
-		modelAndView.addObject( "datas1", datas1 );
+		modelAndView.addObject( "datas", datas ); // 소코드 리스트
+		modelAndView.addObject( "datas1", datas1 ); // 대코드 정보
 		return modelAndView;
 	}
 	//대코드
@@ -48,11 +48,24 @@ public class adminController {
 		
 		to.setSmallcode(request.getParameter("largecode"));
 		//System.out.println( request.getParameter("largecode") );
-		
-		ArrayList<SmallcodeTO> datas = dao.search_de(to);
+
 		
 		ModelAndView modelAndView = new ModelAndView( "admin/commoncode/search_de" );
-		modelAndView.addObject( "to", to );
+
+		return modelAndView;
+	}
+	
+	//회원관리
+	@RequestMapping( "management.do" )
+	public ModelAndView management(HttpServletRequest request) {
+		System.out.println( "management() 호출" );
+		
+		ArrayList<MemberTO> datas = dao.management(); 
+		ArrayList<SmallcodeTO> datas1 = dao.managementcodeList();
+		ModelAndView modelAndView = new ModelAndView( "admin/management/management" );
+		System.out.println(datas1);
+		modelAndView.addObject( "datas", datas );
+		modelAndView.addObject( "datas1", datas1 );
 		return modelAndView;
 	}
 	
