@@ -49,8 +49,7 @@ String loginUser = (String)session.getAttribute("loginUser");
     <br /><br /><br /><br />
 	<main>
 	<div class="container" style="margin-left: 850px;">
-		<h2 style="margin-left: 200px;"class="mt-4">내정보</h2>
-		<!-- <form action="mypage_ok.do" method="post" > -->
+		<h2 style="margin-left: 200px;"class="mt-4">내정보관리</h2>
 			<div class="row mb-3" >
 				<div class="col-md-2 themed-grid-col">ID</div>
 				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=id %></div>
@@ -96,11 +95,6 @@ String loginUser = (String)session.getAttribute("loginUser");
 			</div>
 			
 			<br />
-			<!--
-			 <input style="background-color:white; font-size: 18px; 
-					 border-radius: 25px; width: 100px; height: 40px; " 
-					 type="submit" value="변경하기"> -->
-		<!-- </form> -->
 	</div>
 	</main>
 	
@@ -129,14 +123,14 @@ String loginUser = (String)session.getAttribute("loginUser");
 			document.mfrm.submit();
 		};
 		document.getElementById( 'submit2' ).onclick = function() {
-			if( document.mfrm.phone.value.trim() == '' ) {
+			if( document.mfrm.email.value.trim() == '' ) {
 				alert( '변경할 이메일을 입력해야 합니다.' );
 				return false;
 			}
 			document.mfrm.submit();
 		};
 		document.getElementById( 'submit3' ).onclick = function() {
-			if( document.mfrm.phone.value.trim() == '' ) {
+			if( document.mfrm.name.value.trim() == '' ) {
 				alert( '변경할 이름을 입력해야 합니다.' );
 				return false;
 			}

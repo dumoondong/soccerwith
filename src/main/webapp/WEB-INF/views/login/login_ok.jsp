@@ -4,12 +4,15 @@
 <%	
 	int flag = (Integer)request.getAttribute( "flag" );
 	String id = (String)request.getAttribute( "id" );	
+	String grade = (String)request.getAttribute( "grade" );	
 	
 	out.println( "<script type='text/javascript'>" );
 	if( flag == 0 ) {
 		session.setAttribute("loginUser", id);  //세션에 값 저장
 		out.println( "location.href='./main.do';" );
 	}else if( flag == 2 ){
+		session.setAttribute("loginGrade", grade);  //세션에 값 저장
+		System.out.println( grade );
 		session.setAttribute("loginUser", id);  //세션에 값 저장
 		out.println( "location.href='./commoncode.do';" );
 	} else if( flag == 1 ){

@@ -33,6 +33,7 @@ public class loginController {
 		ModelAndView modelAndView = new ModelAndView("login/login_ok");
 		modelAndView.addObject( "flag", flag );
 		modelAndView.addObject("id", to.getId());
+		modelAndView.addObject("grade", to.getGrade());
 		return modelAndView;
 	}
 	@RequestMapping( "registration.do" )

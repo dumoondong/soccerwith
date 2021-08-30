@@ -28,7 +28,6 @@
 		if( wgap == 0 ) {
 			sbHtml.append( "	&nbsp;<img src='./images/icon_new.gif' alt='NEW'>" );
 		}
-		sbHtml.append( "	</td>" );
 		sbHtml.append( "	<td>" + writer + "</td>" );
 		sbHtml.append( "	<td>" + wdate + "</td>" );
 		sbHtml.append( "	<td>" + hit + "</td>" );

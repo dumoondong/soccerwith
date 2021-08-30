@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String loginUser = (String)session.getAttribute("loginUser");
-	System.out.println(session.getAttribute("loginUser"));
+	String loginGrade = (String)session.getAttribute("loginGrade");
 %>
 <html>
   <head>
@@ -94,21 +94,25 @@
 	   %>      
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="">
             <i class='bx bx-id-card' ></i>
             <span class="link_name">마이페이지</span>
           </a>
           <i class='bx bxs-chevron-down arrow' ></i>
         </div>
 	  	        <ul class="sub-menu">
-	  	          <li><a class="link_name" href="#">마이페이지</a></li>
-	  	          <li><a href="#">내정보보기</a></li>
-	  	          <li><a href="#">비밀번호변경</a></li>
+	  	          <li><a class="link_name" href="#">내정보관리</a></li>
+	  	           <li><a href="">내정보관리</a></li>
+	  	          <li><a href="">비밀번호변경</a></li>
 	  	        </ul>     
 	   </li>
 	   <%
 		 }
 	   %>
+	   <%
+      	if(loginUser == null){
+	  	}else{
+	   %> 
 	   <li>
        <div class="iocn-link">
           <a href="/commoncode.do">
@@ -120,9 +124,12 @@
         <ul class="sub-menu">
           <li><a class="link_name" href="#">관리자메뉴</a></li>
           <li><a href="#">회원관리</a></li>
-          <li><a href="#">공통코드</a></li>
+          <li><a href="commoncode.do">공통코드</a></li>
         </ul>
       </li>
+      <%
+		 }
+	  %>
 </ul>
 </body>
 </html>

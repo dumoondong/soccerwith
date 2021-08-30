@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String loginUser = (String)session.getAttribute("loginUser");
+	String loginGrade = (String)session.getAttribute("loginGrade");
 %>
 <html>
   <head>
@@ -108,6 +109,7 @@
 	   <%
 		 }
 	   %>
+	   
 </ul>
 </body>
 </html>

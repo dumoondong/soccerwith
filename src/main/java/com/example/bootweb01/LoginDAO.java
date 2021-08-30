@@ -34,6 +34,7 @@ public class LoginDAO {
 			if(rs.next()) {
 				if(rs.getString("password").equals(to.getPassword())) {
 					if(rs.getString("grade").equals("관리자")) {
+						to.setGrade( rs.getString( "grade" ) );
 						flag = 2;
 					}else {
 						flag = 0;

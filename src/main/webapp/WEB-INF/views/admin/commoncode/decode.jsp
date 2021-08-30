@@ -1,5 +1,4 @@
 <%@page import="com.example.bootweb01.LargecodeTO"%>
-<%@page import="com.example.bootweb01.SmallcodeTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -8,32 +7,21 @@
 	String loginUser = (String)session.getAttribute("loginUser");
 	String loginGrade = (String)session.getAttribute("loginGrade");
 	
-	ArrayList<SmallcodeTO> datas = (ArrayList)request.getAttribute( "datas" );
-	ArrayList<LargecodeTO> datas1 = (ArrayList)request.getAttribute( "datas1" );
+	ArrayList<LargecodeTO> datas = (ArrayList)request.getAttribute( "datas" );
 	
-	StringBuilder sbHtml = new StringBuilder(); // 소코드 리스트
-	StringBuilder sbHtml1 = new StringBuilder(); // 대코드 검색
+	StringBuilder sbHtml = new StringBuilder();
 	
-	//대코드 검색창
-	for(LargecodeTO to : datas1) {
+	for( LargecodeTO to : datas ) {
 		String seq = to.getSeq();
-		String largeinfo = to.getLargeinfo();
 		String largecode = to.getLargecode();
-		sbHtml1.append("<option value="+largecode+"'>"+largeinfo+"</option>");
-	}
-	
-	//소코드 테이블 리스트
-	for( SmallcodeTO to : datas ) {
-		String seq = to.getSeq();
-		String smallcode = to.getSmallcode();
-		String smallinfo = to.getSmallinfo();
-		String smallremark = to.getSmallremark();
+		String largeinfo = to.getLargeinfo();
+		String largeremark = to.getLargeremark();
 		
 		sbHtml.append( "<tr class='table-secondary'>" );
 		sbHtml.append( "	<td class='left'>" );
-		sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + smallcode + "</a>" );
-		sbHtml.append( "	<td>" + smallinfo + "</td>" );
-		sbHtml.append( "	<td>" + smallremark + "</td>" );
+		sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + largecode + "</a>" );
+		sbHtml.append( "	<td>" + largeinfo + "</td>" );
+		sbHtml.append( "	<td>" + largeremark + "</td>" );
 		sbHtml.append( "</tr>" );
 	}
 %>
@@ -71,30 +59,20 @@
     <div align="middle">
     	<ul style="width:200px; height: 70px; text-align: center;" class="nav nav-pills">
 		  <li class="nav-item">
-		     <a class="nav-link" href="decode.do">대코드</a>
+		    <a class="nav-link active" aria-current="page" href="#">대코드</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link active" aria-current="page" href="#">소코드</a>
+		    <a class="nav-link" href="commoncode.do">소코드</a>
 		  </li>
 		</ul>
-		<!-- 대코드 검색 -->
-		<form action="search_de.do?" method="get" name="mfrm">
-		    <select class="form-select" id="search" style="width:20%; height: 47px;"aria-label="Default select example">
-			  <option selected="selected">대코드 목록</option>
-			  	<%=sbHtml1 %>
-			  	<input type="hidden" name="id" value="selected" />
-			  	<input style="width:60px; margin:-70px 0px 0px 550px;" type="submit" value="검색" class="btn btn-secondary"/>
-			</select>
-		</form>
-		<br /><br />
-		<div style="margin:0px 0px 10px 900px;">
+		<div style="margin:118px 0px 10px 900px;">
 			<input type="submit" value="추가" class="btn btn-secondary"/>
 		</div>
 		<table style="width:40%; text-align: center;" class="table table-hover">
 			<thead>
 				<tr>
-			      <th width="15%" scope="col">소코드</th>
-			      <th width="20%" scope="col">코드정보</th>
+			      <th width="15%" scope="col">대코드</th>
+			      <th width="20%" scope="col">대코드정보</th>
 			      <th width="20%" scope="col">비고</th>
 			    </tr>
 		    </thead>
@@ -117,7 +95,6 @@
   sidebarBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("close");
   });
-
   </script>
 </body>
 </html>

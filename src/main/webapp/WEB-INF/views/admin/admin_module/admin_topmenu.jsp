@@ -3,7 +3,6 @@
     pageEncoding="UTF-8"%>
 <%
 	String loginUser = (String)session.getAttribute("loginUser");
-	System.out.println(session.getAttribute("loginUser"));
 %>
 <html>
   <head>
