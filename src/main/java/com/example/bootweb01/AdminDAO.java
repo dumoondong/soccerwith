@@ -83,4 +83,38 @@ public class AdminDAO {
 		}
 		return datas;
 	}
+	//대코드로 소코드테이블 리스트 찾기
+	public ArrayList<SmallcodeTO> search_de(SmallcodeTO to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<SmallcodeTO> datas = new ArrayList<SmallcodeTO>();
+		
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "select * from smallcode where smallcode like ?||'%'";
+			pstmt = conn.prepareStatement( sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
+			pstmt.setString( 1, to.getSmallcode() );
+			//System.out.println(to.getSmallcode());
+			rs = pstmt.executeQuery();
+			while( rs.next() ) {
+				
+				to.setSeq( rs.getString( "seq" ) );
+				to.setSmallcode( rs.getString( "smallcode" ) );
+				to.setSmallinfo( rs.getString( "smallinfo" ) );
+				to.setSmallremark(rs.getString( "smallremark" ));
+				
+				datas.add( to );
+			}
+		} catch( SQLException e ) {
+			System.out.println( "[에러] " + e.getMessage() );
+		} finally {
+			if( rs != null ) try { rs.close(); } catch( SQLException e ) {}
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}
+		return datas;
+	}
 }

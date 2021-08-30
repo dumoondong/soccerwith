@@ -13,13 +13,12 @@
 	
 	StringBuilder sbHtml = new StringBuilder(); // 소코드 리스트
 	StringBuilder sbHtml1 = new StringBuilder(); // 대코드 검색
-	
 	//대코드 검색창
 	for(LargecodeTO to : datas1) {
 		String seq = to.getSeq();
 		String largeinfo = to.getLargeinfo();
 		String largecode = to.getLargecode();
-		sbHtml1.append("<option value="+largecode+"'>"+largeinfo+"</option>");
+		sbHtml1.append("<option name='"+largecode+"' value='"+largecode+"'>"+largeinfo+"</option>");
 	}
 	
 	//소코드 테이블 리스트
@@ -79,12 +78,12 @@
 		</ul>
 		<!-- 대코드 검색 -->
 		<form action="search_de.do?" method="get" name="mfrm">
-		    <select class="form-select" id="search" style="width:20%; height: 47px;"aria-label="Default select example">
+		    <select class="form-select" onchange="myFunction(this.value)" id="search" style="width:20%; height: 47px;"aria-label="Default select example">
 			  <option selected="selected">대코드 목록</option>
 			  	<%=sbHtml1 %>
-			  	<input type="hidden" name="id" value="selected" />
-			  	<input style="width:60px; margin:-70px 0px 0px 550px;" type="submit" value="검색" class="btn btn-secondary"/>
 			</select>
+			<input type="hidden" name="largecode" id="largecode"/>
+			<input style="width:60px; margin:-70px 0px 0px 550px;" type="submit" value="검색" class="btn btn-secondary"/>
 		</form>
 		<br /><br />
 		<div style="margin:0px 0px 10px 900px;">
@@ -118,6 +117,10 @@
     sidebar.classList.toggle("close");
   });
 
+	function myFunction(input) {
+		document.getElementById("largecode").value = input;
+	}
+   
   </script>
 </body>
 </html>

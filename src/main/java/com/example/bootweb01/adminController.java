@@ -38,10 +38,22 @@ public class adminController {
 		modelAndView.addObject( "datas", datas );
 		return modelAndView;
 	}
+	
+	//소코드 테이블에서 대코드 검색
 	@RequestMapping( "search_de.do" )
 	public ModelAndView registration(HttpServletRequest request) {
 		
-		return new ModelAndView("admin/commoncode/search_de");
+		System.out.println( "search_de() 호출" );
+		SmallcodeTO to = new SmallcodeTO();
+		
+		to.setSmallcode(request.getParameter("largecode"));
+		//System.out.println( request.getParameter("largecode") );
+		
+		ArrayList<SmallcodeTO> datas = dao.search_de(to);
+		
+		ModelAndView modelAndView = new ModelAndView( "admin/commoncode/search_de" );
+		modelAndView.addObject( "to", to );
+		return modelAndView;
 	}
 	
 	
