@@ -7,7 +7,8 @@
 <%
 	String loginUser = (String)session.getAttribute("loginUser");
 	String loginGrade = (String)session.getAttribute("loginGrade");
-
+	ArrayList<MemberTO> grdatas = (ArrayList)session.getAttribute( "grdatas" ); // 소코드 리스트
+	
 	ArrayList<MemberTO> datas = (ArrayList)request.getAttribute( "datas" ); // 회원리스트
 	ArrayList<SmallcodeTO> datas1 = (ArrayList)request.getAttribute( "datas1" ); // 소코드 리스트
 	
@@ -15,33 +16,52 @@
 	StringBuilder sbHtml1 = new StringBuilder(); // 회원 등급 리스트
 	
 	
-	//대코드 검색창
+	//소코드 검색창
 	for(SmallcodeTO to : datas1) {
 		String seq = to.getSeq();
 		String smallcode = to.getSmallcode();
 		String smallinfo = to.getSmallinfo();
-		sbHtml1.append("<option name='"+smallcode+"' value='"+smallcode+"'>"+smallinfo+"</option>");
+		sbHtml1.append("<option name='"+smallinfo+"' value='"+smallinfo+"'>"+smallinfo+"</option>");
 	}
-	
-	//회원 테이블 리스트
-	for( MemberTO to : datas ) {
-		String seq = to.getSeq();
-		String id = to.getId();
-		String grade = to.getGrade();
-		String name = to.getName();
-		String phone = to.getPhone();
-		String email = to.getEmail();
-		
-		sbHtml.append( "<tr class='table-secondary'>" );
-		sbHtml.append( "	<td class='left'>" );
-		sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + id + "</a>" );
-		sbHtml.append( "	<td>" + grade + "</td>" );
-		sbHtml.append( "	<td>" + name + "</td>" );
-		sbHtml.append( "	<td>" + phone + "</td>" );
-		sbHtml.append( "	<td>" + email + "</td>" );
-		sbHtml.append( "</tr>" );
+	if(grdatas == null){
+		//회원 테이블 리스트
+		for( MemberTO to : datas ) {
+			String seq = to.getSeq();
+			String id = to.getId();
+			String grade = to.getGrade();
+			String name = to.getName();
+			String phone = to.getPhone();
+			String email = to.getEmail();
+			
+			sbHtml.append( "<tr class='table-secondary'>" );
+			sbHtml.append( "	<td class='left'>" );
+			sbHtml.append( "		<a href='./memberedit.do?seq=" + seq + "'>" + id + "</a>" );
+			sbHtml.append( "	<td>" + grade + "</td>" );
+			sbHtml.append( "	<td>" + name + "</td>" );
+			sbHtml.append( "	<td>" + phone + "</td>" );
+			sbHtml.append( "	<td>" + email + "</td>" );
+			sbHtml.append( "</tr>" );
+		}
+	}else{
+		//회원 테이블 리스트
+		for( MemberTO to : grdatas ) {
+			String seq = to.getSeq();
+			String id = to.getId();
+			String grade = to.getGrade();
+			String name = to.getName();
+			String phone = to.getPhone();
+			String email = to.getEmail();
+			
+			sbHtml.append( "<tr class='table-secondary'>" );
+			sbHtml.append( "	<td class='left'>" );
+			sbHtml.append( "		<a href='./memberedit.do?seq=" + seq + "'>" + id + "</a>" );
+			sbHtml.append( "	<td>" + grade + "</td>" );
+			sbHtml.append( "	<td>" + name + "</td>" );
+			sbHtml.append( "	<td>" + phone + "</td>" );
+			sbHtml.append( "	<td>" + email + "</td>" );
+			sbHtml.append( "</tr>" );
+		}
 	}
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -75,14 +95,14 @@
 	    </div>
     </section>
     <div align="middle">
-		<!-- 대코드 검색 -->
+		<!-- 회원등급리스트검색 -->
 		<div style="width:60px; margin:0px 0px 70px 0px;"></div>
-		<form action="search_de.do?" method="get" name="mfrm">
+		<form action="search_gr.do" method="get" name="mfrm">
 		    <select class="form-select" onchange="myFunction(this.value)" id="search" style="width:10%; height: 47px;"aria-label="Default select example">
-			  <option selected="selected">등급선택</option> 
+			  <option selected="selected">전체보기</option> 
 			  	<%=sbHtml1 %>
 			</select>
-			<input type="hidden" name="largecode" id="largecode"/>
+			<input type="hidden" name="smallinfo" id="smallinfo"/>
 			<input style="width:60px; margin:-70px 0px 0px 320px;" type="submit" value="검색" class="btn btn-secondary"/>
 		</form>
 		<div style="width:60px; margin:0px 0px 96px 0px;"></div>
@@ -117,7 +137,7 @@
   });
 
 	function myFunction(input) {
-		document.getElementById("largecode").value = input;
+		document.getElementById("smallinfo").value = input;
 	}
    
   </script>

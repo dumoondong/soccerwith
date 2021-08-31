@@ -28,7 +28,6 @@ public class mypageDAO {
 			String sql = "select * from member where id=? ";
 			pstmt = conn.prepareStatement( sql );
 			pstmt.setString( 1, to.getId() );
-			
 			rs = pstmt.executeQuery();
 			if( rs.next() ) {
 				to.setId( rs.getString( "id" ) );

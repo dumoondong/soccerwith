@@ -14,7 +14,7 @@
 		session.setAttribute("loginGrade", grade);  //세션에 값 저장
 		System.out.println( grade );
 		session.setAttribute("loginUser", id);  //세션에 값 저장
-		out.println( "location.href='./commoncode.do';" );
+		out.println( "location.href='./management.do';" );
 	} else if( flag == 1 ){
 		out.println( "alert( '비밀번호가 틀렸습니다.' );" );
 		out.println( "history.back();" );

@@ -7,10 +7,10 @@
 <%
 	String loginUser = (String)session.getAttribute("loginUser");
 	String loginGrade = (String)session.getAttribute("loginGrade");
+	ArrayList<SmallcodeTO> dedatas = (ArrayList)session.getAttribute( "dedatas" ); // 대코드 리스트
 
 	ArrayList<SmallcodeTO> datas = (ArrayList)request.getAttribute( "datas" ); // 소코드 리스트
 	ArrayList<LargecodeTO> datas1 = (ArrayList)request.getAttribute( "datas1" ); // 대코드 리스트
-	
 	StringBuilder sbHtml = new StringBuilder(); // 소코드 리스트
 	StringBuilder sbHtml1 = new StringBuilder(); // 대코드 검색
 	//대코드 검색창
@@ -21,19 +21,36 @@
 		sbHtml1.append("<option name='"+largecode+"' value='"+largecode+"'>"+largeinfo+"</option>");
 	}
 	
-	//소코드 테이블 리스트
-	for( SmallcodeTO to : datas ) {
-		String seq = to.getSeq();
-		String smallcode = to.getSmallcode();
-		String smallinfo = to.getSmallinfo();
-		String smallremark = to.getSmallremark();
-		
-		sbHtml.append( "<tr class='table-secondary'>" );
-		sbHtml.append( "	<td class='left'>" );
-		sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + smallcode + "</a>" );
-		sbHtml.append( "	<td>" + smallinfo + "</td>" );
-		sbHtml.append( "	<td>" + smallremark + "</td>" );
-		sbHtml.append( "</tr>" );
+	if(dedatas == null){
+		//세션이 없을땐 소코드리스트 전부검색
+		for( SmallcodeTO to : datas ) {
+			String seq = to.getSeq();
+			String smallcode = to.getSmallcode();
+			String smallinfo = to.getSmallinfo();
+			String smallremark = to.getSmallremark();
+			
+			sbHtml.append( "<tr class='table-secondary'>" );
+			sbHtml.append( "	<td class='left'>" );
+			sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + smallcode + "</a>" );
+			sbHtml.append( "	<td>" + smallinfo + "</td>" );
+			sbHtml.append( "	<td>" + smallremark + "</td>" );
+			sbHtml.append( "</tr>" );
+		}
+	}else{
+		//세션이있을때 해당하는 테이블 검색
+		for( SmallcodeTO to : dedatas ) {
+			String seq = to.getSeq();
+			String smallcode = to.getSmallcode();
+			String smallinfo = to.getSmallinfo();
+			String smallremark = to.getSmallremark();
+			
+			sbHtml.append( "<tr class='table-secondary'>" );
+			sbHtml.append( "	<td class='left'>" );
+			sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + smallcode + "</a>" );
+			sbHtml.append( "	<td>" + smallinfo + "</td>" );
+			sbHtml.append( "	<td>" + smallremark + "</td>" );
+			sbHtml.append( "</tr>" );
+		}
 	}
 %>
 <!DOCTYPE html>
@@ -77,9 +94,9 @@
 		  </li>
 		</ul>
 		<!-- 대코드 검색 -->
-		<form action="search_de.do?" method="get" name="mfrm">
+		<form action="search_de.do?" method="post" name="mfrm">
 		    <select class="form-select" onchange="myFunction(this.value)" id="search" style="width:10%; height: 47px;"aria-label="Default select example">
-			  <option selected="selected">대코드 목록</option>
+			  <option selected="selected">전체보기</option>
 			  	<%=sbHtml1 %>
 			</select>
 			<input type="hidden" name="largecode" id="largecode"/>
@@ -107,25 +124,27 @@
 	
 	
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">소코드 추가</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"></span>
-					</button>
-				</div>
-				<div class="modal-body">
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">추가</button>
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	<form>
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">소코드 추가</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+					</div>
+					<div class="modal-footer">
+						<input type="button"  value="추가 "class="btn btn-primary"/>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
   <script>
   let arrow = document.querySelectorAll(".arrow");
   for (var i = 0; i < arrow.length; i++) {

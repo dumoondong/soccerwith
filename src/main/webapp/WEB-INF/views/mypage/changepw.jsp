@@ -41,23 +41,23 @@
     </section>
     <br /><br /><br /><br />
 	<main>
-	<div class="container" style="text-align: center;">
+	<div class="container" align="middle">
 		<h2 class="mt-4">비밀번호변경</h2>
 		<form action="changepw_ok.do" method="post" name="wfrm" class="was-validated">
 			<input type="hidden" name="id" value="<%=loginUser %>" />
-		    <div class="form-group">
+		    <div style="width:300px;" class="form-group">
 		      <input type="password" class="form-control" name="password1" placeholder="변경할 비밀번호" id="password1" required>
 		      <div class="valid-feedback"></div>
 		      <div class="invalid-feedback">입력하셔야 합니다.</div>
 		    </div>
 		    <br />
-		    <div class="form-group">
+		    <div style="width:300px;" class="form-group">
 		      <input type="password" class="form-control" name="password2" placeholder="변경할 비밀번호 확인" id="password2" required>
 		      <div class="valid-feedback"></div>
 		      <div class="invalid-feedback">입력하셔야 합니다.</div>
 		    </div>
 		    <br />
-		    <button type="submit" id="submit1" class="btn btn-primary">Submit</button>
+		    <button type="submit" id="submit1" class="btn btn-primary">변경</button>
 	  	</form>
 			
 	</div>

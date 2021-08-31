@@ -52,7 +52,7 @@ String loginUser = (String)session.getAttribute("loginUser");
 		<h2 style="margin-left: 200px;"class="mt-4">내정보관리</h2>
 			<div class="row mb-3" >
 				<div class="col-md-2 themed-grid-col">ID</div>
-				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=id %></div>
+				<div style="background-color:white" class="col-md-3 themed-grid-col"><%=loginUser %></div>
 			</div>
 			<div class="row mb-3">
 				<div class="col-md-2 themed-grid-col">회원등급</div>

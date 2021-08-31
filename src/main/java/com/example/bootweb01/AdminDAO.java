@@ -84,7 +84,7 @@ public class AdminDAO {
 		return datas;
 	}
 	//대코드로 소코드테이블 리스트 찾기
-	public ArrayList<SmallcodeTO> search_de() {
+	public ArrayList<SmallcodeTO> search_de(String largecode) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -93,10 +93,9 @@ public class AdminDAO {
 		
 		try {
 			conn = this.dataSource.getConnection();
-			String sql = "select * from smallcode where smallcode like ?||'%'";
+			String sql = "select * from smallcode where smallcode like ?";
 			pstmt = conn.prepareStatement( sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
-//			pstmt.setString( 1, to.getSmallcode() );
-//			System.out.println(to.getSmallcode());
+			pstmt.setString( 1, "%"+largecode+"%" );
 			rs = pstmt.executeQuery();
 			while( rs.next() ) {
 				SmallcodeTO to = new SmallcodeTO();
@@ -165,7 +164,6 @@ public class AdminDAO {
 			
 			String sql = "select * from smallcode where smallcode like 'mg%'";
 			pstmt = conn.prepareStatement( sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
-			
 			rs = pstmt.executeQuery();
 			
 			while( rs.next() ) {
@@ -173,6 +171,41 @@ public class AdminDAO {
 				to.setSeq( rs.getString( "seq" ) );
 				to.setSmallcode( rs.getString( "smallcode" ) );
 				to.setSmallinfo( rs.getString( "smallinfo" ) );
+				
+				datas.add( to );
+			}
+		} catch( SQLException e ) {
+			System.out.println( "[에러] " + e.getMessage() );
+		} finally {
+			if( rs != null ) try { rs.close(); } catch( SQLException e ) {}
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}
+		return datas;
+	}
+	//회원등급 일치 리스트 
+	public ArrayList<MemberTO> search_gr(String smallinfo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<MemberTO> datas = new ArrayList<MemberTO>();
+		
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "select * from member where grade like ?";
+			pstmt = conn.prepareStatement( sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
+			pstmt.setString( 1, "%"+smallinfo+"%" );
+			rs = pstmt.executeQuery();
+			while( rs.next() ) {
+				MemberTO to = new MemberTO();
+				to.setSeq( rs.getString( "seq" ) );
+				to.setId(rs.getString("id"));
+				to.setGrade(rs.getString("grade"));
+				to.setName(rs.getString("name"));
+				to.setPhone(rs.getString("phone"));
+				to.setEmail(rs.getString("email"));
 				
 				datas.add( to );
 			}

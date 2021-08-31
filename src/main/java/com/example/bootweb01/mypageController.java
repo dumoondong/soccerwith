@@ -22,7 +22,6 @@ public class mypageController {
 		
 		to.setId(request.getParameter("id"));
 		to = dao.mypageView( to );
-		
 		ModelAndView modelAndView = new ModelAndView( "mypage/mypage" );
 		modelAndView.addObject( "to", to );
 		return modelAndView;
