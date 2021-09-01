@@ -7,7 +7,7 @@
 <%
 	String loginUser = (String)session.getAttribute("loginUser");
 	String loginGrade = (String)session.getAttribute("loginGrade");
-	ArrayList<SmallcodeTO> dedatas = (ArrayList)session.getAttribute( "dedatas" ); // 대코드 리스트
+	ArrayList<SmallcodeTO> dedatas = (ArrayList)session.getAttribute( "dedatas" ); // 검색한대코드 리스트
 
 	ArrayList<SmallcodeTO> datas = (ArrayList)request.getAttribute( "datas" ); // 소코드 리스트
 	ArrayList<LargecodeTO> datas1 = (ArrayList)request.getAttribute( "datas1" ); // 대코드 리스트
@@ -31,7 +31,7 @@
 			
 			sbHtml.append( "<tr class='table-secondary'>" );
 			sbHtml.append( "	<td class='left'>" );
-			sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + smallcode + "</a>" );
+			sbHtml.append( "		<a href='./commoncodeEdit.do?seq=" + seq + "'>" + smallcode + "</a>" );
 			sbHtml.append( "	<td>" + smallinfo + "</td>" );
 			sbHtml.append( "	<td>" + smallremark + "</td>" );
 			sbHtml.append( "</tr>" );
@@ -46,7 +46,7 @@
 			
 			sbHtml.append( "<tr class='table-secondary'>" );
 			sbHtml.append( "	<td class='left'>" );
-			sbHtml.append( "		<a href='./view.do?seq=" + seq + "'>" + smallcode + "</a>" );
+			sbHtml.append( "		<a href='./commoncodeEdit.do?seq=" + seq + "'>" + smallcode + "</a>" );
 			sbHtml.append( "	<td>" + smallinfo + "</td>" );
 			sbHtml.append( "	<td>" + smallremark + "</td>" );
 			sbHtml.append( "</tr>" );
@@ -124,7 +124,7 @@
 	
 	
 	<!-- Modal -->
-	<form>
+	<form action="commoncodeWrite.do" method="post" name="mfrm" >
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -135,10 +135,30 @@
 						</button>
 					</div>
 					<div class="modal-body">
+					<div class="modal-body">
+						<select style = "width: 350px;margin-bottom: 60px; " class="form-select" onchange="myFunction(this.value)" id="search" style="width:10%; height: 47px;"aria-label="Default select example">
+							<option selected="selected">대코드선택</option>
+								 <%=sbHtml1 %>
+								<input type="hidden" name="decode" id="largecode1"/>
+						</select>
 						
+						<div class="row mb-3" >
+							<div class="col-md-5 themed-grid-col">소코드</div>
+							<input style="background-color:white" name="smallcode" class="col-md-7 themed-grid-col" type="text" >
+						</div>	
+						<div class="row mb-3" >
+							<div class="col-md-5 themed-grid-col">소코드정보</div>
+							<input style="background-color:white" name="smallinfo" class="col-md-7 themed-grid-col" type="text" >
+						</div>
+						
+						<div class="row mb-3">
+							<div class="col-md-5 themed-grid-col">비고</div>
+							<input style="background-color:white" name="smallremark" class="col-md-7 themed-grid-col" type="text" >
+						</div>
+					</div>
 					</div>
 					<div class="modal-footer">
-						<input type="button"  value="추가 "class="btn btn-primary"/>
+						<input type="submit"  value="추가 "class="btn btn-primary"/>
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 					</div>
 				</div>
@@ -162,8 +182,9 @@
 
 	function myFunction(input) {
 		document.getElementById("largecode").value = input;
+		document.getElementById("largecode1").value = input;
 	}
-   
+
   </script>
 </body>
 </html>

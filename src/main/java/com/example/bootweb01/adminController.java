@@ -37,7 +37,64 @@ public class adminController {
 		modelAndView.addObject( "datas", datas );
 		return modelAndView;
 	}
+	//대코드수정페이지
+	@RequestMapping( "decodeedit.do" )
+	public ModelAndView decodeedit(HttpServletRequest request) {
+		System.out.println( "decodeedit() 호출" );
+		LargecodeTO to = new LargecodeTO();
+		to.setSeq(request.getParameter( "seq" ) );
+		//System.out.println(request.getParameter( "seq" ));
+		to = dao.decodeedit( to );
+		ModelAndView modelAndView = new ModelAndView("admin/commoncode/decodeedit");
+		modelAndView.addObject( "to", to );
+		return modelAndView;
+	}
+	//대코드 수정 확인
+	@RequestMapping( "decodeedit_ok.do" )
+	public ModelAndView decodeedit_ok(HttpServletRequest request) {
+		System.out.println( "decodeedit_ok() 호출" );
+		
+		LargecodeTO to = new LargecodeTO();
 	
+		to.setSeq(request.getParameter( "seq" ) );
+		to.setLargeinfo(request.getParameter( "largeinfo" ));
+		to.setLargeremark(request.getParameter( "largeremark" ));
+		int flag = dao.decodeedit_ok(to);
+		
+		ModelAndView modelAndView = new ModelAndView("admin/commoncode/decodeedit_ok");
+		modelAndView.addObject( "flag", flag );
+		return modelAndView;
+	}
+	//대코드 삭제
+	@RequestMapping( "decodedelete_ok.do" )
+	public ModelAndView dedcodedelete_ok(HttpServletRequest request) {
+		System.out.println( "decodedelette_ok() 호출" );
+		
+		LargecodeTO to = new LargecodeTO();
+	
+		to.setSeq(request.getParameter( "seq" ) );
+		int flag = dao.decodedelete_ok(to);
+		
+		ModelAndView modelAndView = new ModelAndView("admin/commoncode/decodedelete_ok");
+		modelAndView.addObject( "flag", flag );
+		return modelAndView;
+	}
+	//대코드 추가
+	@RequestMapping( "decodewrite.do" )
+	public ModelAndView decodewrite(HttpServletRequest request) {
+		System.out.println( "decodedelette_ok() 호출" );
+		
+		LargecodeTO to = new LargecodeTO();
+		to.setLargecode(request.getParameter( "largecode" ) );
+		to.setLargeinfo(request.getParameter( "largeinfo" ) );
+		to.setLargeremark(request.getParameter( "largeremark" ) );
+		
+		int flag = dao.decodewrite(to);
+		
+		ModelAndView modelAndView = new ModelAndView("admin/commoncode/decodewrite");
+		modelAndView.addObject( "flag", flag );
+		return modelAndView;
+	}
 	//소코드 테이블에서 대코드 검색
 	@RequestMapping( "search_de.do" )
 	public ModelAndView search_de(HttpServletRequest request) {
@@ -52,7 +109,69 @@ public class adminController {
 		modelAndView.addObject( "datas", datas );
 		return modelAndView;
 	}
+	//소코드 수정페이지
+	@RequestMapping( "commoncodeEdit.do" )
+	public ModelAndView commoncodeEdit(HttpServletRequest request) {
+		System.out.println( "commoncodeEdit() 호출" );
+		SmallcodeTO to = new SmallcodeTO();
+		
+		to.setSeq(request.getParameter( "seq" ) );
+
+		to = dao.commoncodeEdit( to );
+		ArrayList<LargecodeTO> datas1 = dao.LargecodeList();
+		ModelAndView modelAndView = new ModelAndView("admin/commoncode/commoncodeEdit");
+		
+		modelAndView.addObject( "to", to );
+		return modelAndView;
+	}
+	//소코드 수정 확인
+	@RequestMapping( "commoncodeEdit_ok.do" )
+	public ModelAndView commoncodeEdit_ok(HttpServletRequest request) {
+		System.out.println( "commoncodeEdit_ok() 호출" );
+		
+		SmallcodeTO to = new SmallcodeTO();
+		//System.out.println(request.getParameter( "smallinfo" ));
+		//System.out.println(request.getParameter( "smallremark" ));
+		to.setSeq(request.getParameter( "seq" ) );
+		to.setSmallcode(request.getParameter("smallcode"));
+		to.setSmallinfo(request.getParameter( "smallinfo" ));
+		to.setSmallremark(request.getParameter( "smallremark" ));
+		int flag = dao.commoncodeEdit_ok(to);
+		
+		ModelAndView modelAndView = new ModelAndView("admin/commoncode/commoncodeEdit_ok");
+		modelAndView.addObject( "flag", flag );
+		return modelAndView;
+	}
+	//소코드 삭제
+	@RequestMapping( "commoncodeDelete_ok.do" )
+	public ModelAndView commoncodeDelete_ok(HttpServletRequest request) {
+		System.out.println( "commoncodeDelete_ok() 호출" );
+		
+		SmallcodeTO to = new SmallcodeTO();
 	
+		to.setSeq(request.getParameter( "seq" ) );
+		int flag = dao.commoncodeDelete_ok(to);
+		
+		ModelAndView modelAndView = new ModelAndView("admin/commoncode/commoncodeDelete_ok");
+		modelAndView.addObject( "flag", flag );
+		return modelAndView;
+	}
+	//소코드 추가
+	@RequestMapping( "commoncodeWrite.do" )
+	public ModelAndView commoncodeWrite(HttpServletRequest request) {
+		System.out.println( "decodedelette_ok() 호출" );
+		
+		SmallcodeTO to = new SmallcodeTO();
+		to.setSmallcode(request.getParameter( "decode")+request.getParameter( "smallcode"));
+		to.setSmallinfo(request.getParameter( "smallinfo" ) );
+		to.setSmallremark(request.getParameter( "smallinfo" ) );
+		
+		int flag = dao.commoncodeWrite(to);
+		
+		ModelAndView modelAndView = new ModelAndView("admin/commoncode/commoncodeWrite");
+		modelAndView.addObject( "flag", flag );
+		return modelAndView;
+	}
 	//회원관리
 	@RequestMapping( "management.do" )
 	public ModelAndView management(HttpServletRequest request) {
@@ -72,13 +191,39 @@ public class adminController {
 	public ModelAndView checkpw(HttpServletRequest request) {
 		System.out.println( "memberedit() 호출" );
 		MemberTO to = new MemberTO();
-		to.setSeq(request.getParameter( "seq" ) );
-		System.out.println(request.getParameter( "seq" ));
+		ArrayList<SmallcodeTO> datas1 = dao.memberGrade();
 		
-		return new ModelAndView("admin/management/memberedit");
+		to.setSeq(request.getParameter( "seq" ) );
+		to = dao.memberedit( to );
+		ModelAndView modelAndView = new ModelAndView("admin/management/memberedit");
+		modelAndView.addObject( "to", to );
+		modelAndView.addObject( "datas1", datas1 ); // 대코드 정보
+		return modelAndView;
 	}
-	
-	//회원관리 테이블에서 소코드 검색 진행중
+	//회원 수정 확인
+	@RequestMapping( "memberedit_ok.do" )
+	public ModelAndView memberedit_ok(HttpServletRequest request) {
+		System.out.println( "commoncodeEdit_ok() 호출" );
+		
+		MemberTO to = new MemberTO();
+//		System.out.println(request.getParameter( "smallinfo" ));
+//		System.out.println(request.getParameter( "id" ));
+//		System.out.println(request.getParameter( "name" ));
+//		System.out.println(request.getParameter( "phone" ));
+//		System.out.println(request.getParameter( "email" ));
+		to.setSeq(request.getParameter( "seq" ) );
+		to.setId(request.getParameter("id"));
+		to.setName(request.getParameter( "name" ));
+		to.setPhone(request.getParameter( "phone" ));
+		to.setEmail(request.getParameter( "email" ));
+		to.setGrade(request.getParameter( "smallinfo" ));
+		int flag = dao.memberedit_ok(to);
+		
+		ModelAndView modelAndView = new ModelAndView("admin/management/memberedit_ok");
+		modelAndView.addObject( "flag", flag );
+		return modelAndView;
+	}
+	//회원관리 테이블에서 소코드 검색
 	@RequestMapping( "search_gr.do" )
 	public ModelAndView search_gr(HttpServletRequest request) {
 		System.out.println( "search_gr() 호출" );
@@ -92,6 +237,4 @@ public class adminController {
 		modelAndView.addObject( "datas", datas );
 		return modelAndView;
 	}
-	
-	
 }

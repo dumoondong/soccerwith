@@ -1,4 +1,4 @@
-<%@page import="com.example.bootweb01.MemberTO"%>
+<%@page import="com.example.bootweb01.LargecodeTO"%>
 <%@page import="com.example.bootweb01.SmallcodeTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,24 +7,12 @@
 <%
 	String loginUser = (String)session.getAttribute("loginUser");
 	String loginGrade = (String)session.getAttribute("loginGrade");
-	ArrayList<SmallcodeTO> datas1 = (ArrayList)request.getAttribute( "datas1" ); // 대코드 리스트
-	
-	StringBuilder sbHtml1 = new StringBuilder(); // 대코드 검색
-	
-	//대코드 검색창
-	for(SmallcodeTO to : datas1) {
-		String seq = to.getSeq();
-		String smallcode = to.getSmallcode();
-		String smallinfo = to.getSmallinfo();
-		sbHtml1.append("<option name='"+smallinfo+"' value='"+smallinfo+"'>"+smallinfo+"</option>");
-	}	
-	MemberTO to = (MemberTO)request.getAttribute( "to" );
+
+	LargecodeTO to = (LargecodeTO)request.getAttribute( "to" );
 	String seq = to.getSeq();
-	String id = to.getId();
-	String grade = to.getGrade();
-	String phone = to.getPhone();
-	String email = to.getEmail();
-	String name = to.getName();
+	String largecode = to.getLargecode();
+	String largeinfo = to.getLargeinfo();
+	String largeremark = to.getLargeremark();
 %>
 <!DOCTYPE html>
 <html>
@@ -59,33 +47,23 @@
 	    </div>
     </section>
     <div class="wrapper" >
-		<form action="memberedit_ok.do" >
+		<form action="decodeedit_ok.do" method="post" name="mfrm" >
 			<div class="group">
-				<h2 class="mt-4">회원정보 수정</h2>
-				<select class="form-select" onchange="myFunction(this.value)" id="search" aria-label="Default select example">
-					<option selected="selected" >회원등급 선택</option>
-					<%=sbHtml1 %>
-				</select>
-				<input type="hidden" name="smallinfo" id="smallinfo"/>
+				<h2 class="mt-4">대코드 수정</h2>				
 				<div class="row mb-3" >
-					<div class="col-md-5 themed-grid-col">회원ID</div>
-					<input style="background-color:white" name="id" value="<%=id %>" class="col-md-7 themed-grid-col" type="text" >
+					<div class="col-md-5 themed-grid-col">대코드</div>
+					<div style="background-color:white" class="col-md-7 themed-grid-col"><%=largecode %> 수정불가</div>
 				</div>	
 				<div class="row mb-3" >
-					<div class="col-md-5 themed-grid-col">이름</div>
-					<input style="background-color:white" name="name" value="<%=name %>" class="col-md-7 themed-grid-col" type="text" >
+					<div class="col-md-5 themed-grid-col">대코드정보</div>
+					<input style="background-color:white" name="largeinfo" value="<%=largeinfo %>" class="col-md-7 themed-grid-col" type="text" >
 				</div>
 				
 				<div class="row mb-3">
-					<div class="col-md-5 themed-grid-col">핸드폰번호</div>
-					<input style="background-color:white" name="phone" value="<%=phone %>" class="col-md-7 themed-grid-col" type="text" >
+					<div class="col-md-5 themed-grid-col">비고</div>
+					<input style="background-color:white" name="largeremark" value="<%=largeremark %>" class="col-md-7 themed-grid-col" type="text" >
 				</div>
-				
-				<div class="row mb-3">
-					<div class="col-md-5 themed-grid-col">이메일</div>
-					<input style="background-color:white" name="email" value="<%=email %>" class="col-md-7 themed-grid-col" type="text" >
-				</div>
-				
+							
 				<div class="form-input">
 					<input type="hidden" name="seq" value="<%=seq %>"/>
 					<input type="submit" value="수정" class="btn btn-secondary"/>
@@ -93,8 +71,11 @@
 		    </div>
 		</form>
 		<div class="btn-group">
-			<button class="btn btn-secondary">삭제</button>
-			<button class="btn btn-secondary" onclick="location.href='./management.do?id=<%=loginUser %>'">취소</button>
+			<form action="decodedelete_ok.do" method="post" >
+				<input type="hidden" name="seq" value="<%=seq %>"/>
+				<input type="submit" value="삭제" class="btn btn-secondary"/>
+			</form>
+			<button class="btn btn-secondary" onclick="location.href='./decode.do?id=<%=loginUser %>'">취소</button>
 		</div>
 	</div>
   <script>
@@ -111,11 +92,8 @@
   sidebarBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("close");
   });
-  
-  
-	function myFunction(input) {
-		document.getElementById("smallinfo").value = input;
-	}
+
+   
   </script>
 </body>
 </html>
