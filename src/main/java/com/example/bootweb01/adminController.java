@@ -14,6 +14,9 @@ public class adminController {
 	
 	@Autowired
 	private AdminDAO dao;
+	@Autowired
+	private mypageDAO dao1;
+	
 	//소코드
 	@RequestMapping( "commoncode.do" )
 	public ModelAndView commoncode(HttpServletRequest request) {
@@ -206,11 +209,7 @@ public class adminController {
 		System.out.println( "commoncodeEdit_ok() 호출" );
 		
 		MemberTO to = new MemberTO();
-//		System.out.println(request.getParameter( "smallinfo" ));
-//		System.out.println(request.getParameter( "id" ));
-//		System.out.println(request.getParameter( "name" ));
-//		System.out.println(request.getParameter( "phone" ));
-//		System.out.println(request.getParameter( "email" ));
+
 		to.setSeq(request.getParameter( "seq" ) );
 		to.setId(request.getParameter("id"));
 		to.setName(request.getParameter( "name" ));
@@ -235,6 +234,20 @@ public class adminController {
 		//System.out.println(smallcode);	
 		ModelAndView modelAndView = new ModelAndView( "admin/management/search_gr" );
 		modelAndView.addObject( "datas", datas );
+		return modelAndView;
+	}
+	//회원정보 삭제
+	@RequestMapping( "managementDelete_ok.do" )
+	public ModelAndView managementDelete_ok(HttpServletRequest request) {
+		System.out.println( "managementDelete_ok() 호출" );
+		
+		MemberTO to = new MemberTO();
+	
+		to.setSeq(request.getParameter( "seq" ) );
+		int flag = dao.managementDelete_ok(to);
+		
+		ModelAndView modelAndView = new ModelAndView("admin/management/managementDelete_ok");
+		modelAndView.addObject( "flag", flag );
 		return modelAndView;
 	}
 }

@@ -1,19 +1,24 @@
+<%@page import="com.example.bootweb01.SmallcodeTO"%>
 <%@page import="com.example.bootweb01.MemberTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-String loginUser = (String)session.getAttribute("loginUser");
-
+	String loginUser = (String)session.getAttribute("loginUser");
+	String loginGrade = (String)session.getAttribute("loginGrade");
 
 	MemberTO to = (MemberTO)request.getAttribute( "to" );
 	String id = to.getId();
-	String grade = to.getGrade();
 	String phone = to.getPhone();
 	String email = to.getEmail();
 	String name = to.getName();
+	String grade = to.getGrade();
 	String writeboa = to.getWriteboa();
 	String writecom = to.getWritecom();
+	
+	SmallcodeTO to1 = (SmallcodeTO)request.getAttribute( "to1" );
+	String cggrade = to1.getSmallinfo();
+	
 %>
 <html>
   <head>

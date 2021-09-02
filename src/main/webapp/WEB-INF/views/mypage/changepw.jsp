@@ -43,6 +43,7 @@
 	<main>
 	<div class="container" align="middle">
 		<h2 class="mt-4">비밀번호변경</h2>
+		<div style="margin:0px 0px 150px 0px;"></div>
 		<form action="changepw_ok.do" method="post" name="wfrm" class="was-validated">
 			<input type="hidden" name="id" value="<%=loginUser %>" />
 		    <div style="width:300px;" class="form-group">

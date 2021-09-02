@@ -81,7 +81,7 @@
 				<li><a style="padding: 100px; color: white;"><%=loginUser %>님</a></li>
 				<li><a href="logout.do">로그아웃</a></li>
 				<li><a href="eventlist.do">이벤트</a></li>
-				<li><a href="service.do">고객센터</a></li>
+				<li><a href="service.do?id=<%=loginUser%>">고객센터</a></li>
 			</ul>
 		</div>
 	</nav>   

@@ -32,11 +32,12 @@ public class LoginDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				if(rs.getString("password").equals(to.getPassword())) {
+				if(rs.getString("password").equals(to.getPassword())) {			
 					if(rs.getString("grade").equals("관리자")) {
 						to.setGrade( rs.getString( "grade" ) );
 						flag = 2;
 					}else {
+						to.setGrade(rs.getString("grade"));
 						flag = 0;
 					}
 				}else {

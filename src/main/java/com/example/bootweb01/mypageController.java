@@ -19,11 +19,18 @@ public class mypageController {
 	public ModelAndView mypage(HttpServletRequest request) {
 		System.out.println( "mypage() 호출" );
 		MemberTO to = new MemberTO();
+		SmallcodeTO to1 = new SmallcodeTO();
+		
 		
 		to.setId(request.getParameter("id"));
+		to1.setSmallcode(request.getParameter("grade"));
 		to = dao.mypageView( to );
+		to1 = dao.changeGrade(to1);
+		System.out.println(to);
 		ModelAndView modelAndView = new ModelAndView( "mypage/mypage" );
 		modelAndView.addObject( "to", to );
+		modelAndView.addObject( "to1", to1 );
+		
 		return modelAndView;
 	}
 	//핸드폰번호 변경

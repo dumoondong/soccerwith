@@ -95,8 +95,9 @@
 	    </div>
     </section>
     <div align="middle">
+    	<h2 class="mt-4">회원관리</h2>
 		<!-- 회원등급리스트검색 -->
-		<div style="width:60px; margin:0px 0px 70px 0px;"></div>
+		<div style="width:60px; margin:0px 0px 8px 0px;"></div>
 		<form action="search_gr.do" method="get" name="mfrm">
 		    <select class="form-select" onchange="myFunction(this.value)" id="search" style="width:10%; height: 47px;"aria-label="Default select example">
 			  <option selected="selected">전체보기</option> 

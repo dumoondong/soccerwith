@@ -29,7 +29,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-     <link rel="stylesheet" type="text/css" href="./css/admin.css">
     <link rel="stylesheet" type="text/css" href="./css/menustyle2.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -87,15 +86,15 @@
 		<!-- Modal -->
 	<form action="decodewrite.do" method="post" name="mfrm" >
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content" style="width: 600px;">
 					<div class="modal-header">
 						<h5 class="modal-title">대코드 추가</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true"></span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body" style="margin:20px 20px 20px 20px;">
 						<div class="row mb-3" >
 							<div class="col-md-5 themed-grid-col">대코드</div>
 							<input style="background-color:white" name="largecode" class="col-md-7 themed-grid-col" type="text" >

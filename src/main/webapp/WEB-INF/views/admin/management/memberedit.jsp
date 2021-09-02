@@ -93,7 +93,10 @@
 		    </div>
 		</form>
 		<div class="btn-group">
-			<button class="btn btn-secondary">삭제</button>
+			<form action="managementDelete_ok.do" method="post" >
+				<input type="hidden" name="seq" value="<%=seq %>"/>
+				<input type="submit" value="삭제"class="btn btn-secondary"/>
+			</form>
 			<button class="btn btn-secondary" onclick="location.href='./management.do?id=<%=loginUser %>'">취소</button>
 		</div>
 	</div>

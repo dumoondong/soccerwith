@@ -506,12 +506,7 @@ public class AdminDAO {
 			
 			String sql = "update member set id=?, name=?, phone=?,email=?,grade=? where seq=?";
 			pstmt = conn.prepareStatement( sql );
-			System.out.println(to.getId());
-			System.out.println(to.getName());
-			System.out.println(to.getPhone());
-			System.out.println(to.getEmail());
-			System.out.println(to.getGrade());
-			System.out.println(to.getSeq());
+
 			pstmt.setString( 1, to.getId() );
 			pstmt.setString( 2, to.getName() );
 			pstmt.setString( 3, to.getPhone() );
@@ -529,6 +524,32 @@ public class AdminDAO {
 			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
 			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
 		}	
+		return flag;
+	}
+	//회원정보 삭제
+	public int managementDelete_ok(MemberTO to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int flag = 0;
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "delete from member where seq=?";
+			pstmt = conn.prepareStatement( sql );
+			
+			pstmt.setString( 1, to.getSeq() );
+			int result = pstmt.executeUpdate();
+			if( result == 0 ) {
+				flag = 1;
+			}
+		} catch( SQLException e ) {
+			System.out.println( "[에러] " + e.getMessage() );
+		} finally {
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}
+
 		return flag;
 	}
 }

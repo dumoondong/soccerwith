@@ -94,7 +94,7 @@
 	   %>      
       <li>
         <div class="iocn-link">
-          <a href="./mypage.do?id=<%=loginUser%>">
+          <a href="./mypage.do?id=<%=loginUser%>&grade=<%=loginGrade%>">
             <i class='bx bx-id-card' ></i>
             <span class="link_name">내정보관리</span>
           </a>
@@ -102,7 +102,7 @@
         </div>
 	  	        <ul class="sub-menu">
 	  	          <li><a class="link_name" href="#">내정보관리</a></li>
-	  	          <li><a href="./mypage.do?id=<%=loginUser%>">내정보관리</a></li>
+	  	          <li><a href="./mypage.do?id=<%=loginUser%>&grade=<%=loginGrade%>">내정보관리</a></li>
 	  	          <li><a href="./checkpw.do?id=<%=loginUser%>">비밀번호변경</a></li>
 	  	        </ul>     
 	   </li>

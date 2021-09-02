@@ -47,10 +47,6 @@ public class BoardController {
 	public ModelAndView main(HttpServletRequest request) {
 		return new ModelAndView("menu/main");
 	}
-	@RequestMapping( "service.do" )
-	public ModelAndView service(HttpServletRequest request) {
-		return new ModelAndView("customerService/service");
-	}
 	@RequestMapping( "/eventlist.do" )
 	public ModelAndView eventlist(HttpServletRequest request) {
 		System.out.println( "list() 호출" );

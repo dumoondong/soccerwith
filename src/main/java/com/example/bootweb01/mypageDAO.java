@@ -46,6 +46,7 @@ public class mypageDAO {
 		}	
 		return to;
 	}
+	
 	//비밀번호 확인
 	public int checkpw(MemberTO to) {
 		Connection conn = null;
@@ -183,5 +184,29 @@ public class mypageDAO {
 			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
 		}	
 		return flag;
+	}
+	//등급 소코드정보로 변환
+	public SmallcodeTO changeGrade(SmallcodeTO to1) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = this.dataSource.getConnection();
+			
+			String sql = "select * from smallcode where smallcode=? ";
+			pstmt = conn.prepareStatement( sql );
+			pstmt.setString( 1, to1.getSmallcode() );
+			rs = pstmt.executeQuery();
+			if( rs.next() ) {
+				to1.setSmallinfo(rs.getString("smallinfo"));
+			}
+		} catch( SQLException e ) {
+			System.out.println("[에러] " + e.getMessage() );
+		} finally {
+			if( pstmt != null ) try { pstmt.close(); } catch( SQLException e ) {}
+			if( conn != null ) try { conn.close(); } catch( SQLException e ) {}
+		}	
+		return to1;
 	}
 }
