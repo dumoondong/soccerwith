@@ -1,9 +1,34 @@
-<%@page import="com.example.bootweb01.MemberTO"%>
+<%@page import="ch.qos.logback.core.net.SyslogOutputStream"%>
+<%@page import="com.example.bootweb01.newsTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.ArrayList" %>
+
+<!--  JSP에서 jsoup을 사용하기 위해 import -->
+<%@ page import="org.jsoup.Jsoup" %>
+<%@ page import="org.jsoup.nodes.Document" %>
+<%@ page import="org.jsoup.nodes.Element" %>
+<%@ page import="org.jsoup.select.Elements" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <%	
 	String loginUser = (String)session.getAttribute("loginUser");
+	
+/* 	ArrayList<newsTO> datas = (ArrayList)request.getAttribute( "datas" );
+	
+	StringBuilder sbHtml = new StringBuilder();
+	
+	for( newsTO to : datas ) {
+		String seq = to.getSeq();
+		String newstitle = to.getNewstitle();
+		String newscontent = to.getNewscontent();
+		System.out.println(seq);
+		System.out.println(newstitle);
+		System.out.println(newscontent);
+	} */
 %>
 <html>
   <head>
@@ -24,6 +49,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	</content>
+	
    </head>
 <body>
 	<!-- 상단메뉴 -->
@@ -33,52 +59,100 @@
 		<jsp:include page="../module/leftmenu.jsp" />
 	</div>
 	<br /><br /><br />
-	<section class="home-section" >
-		<div class="home-content">
-		<i class='bx bx-menu' ></i>
-		</div>
-	</section>  
-	<div class="news_headline" align= "middle">
-							
-								
-								
-								
-									<span class="logo" id="pressLogo"><a href="http://www.interfootball.co.kr" class="link" target="_blank"><img height="35" src="https://mimgnews.pstatic.net/image/upload/office_logo/413/2020/11/26/logo_413_11_20201126174936.png" alt="인터풋볼" onerror="javascript:setPressLogo('인터풋볼');"></a></span>
-								
-							
-							<h4 class="newstitle" style="font-size: 35px;">PSG 폭주는 계속된다...2002년생 '프랑스 초신성' 영입 눈앞</h4>
-							<div class="info">
-								<span>기사입력 2021.08.24. 오후 02:10</span>
-								<span><span class="bar"></span>최종수정 2021.08.24. 오후 02:10</span>
-								
-									<a target="_blank" href="http://www.interfootball.co.kr/news/articleView.html?idxno=540595" class="press_link">기사원문</a>
-								
-							</div>
-							
-						</div>
-						<div class="newssubtitle" id="newsEndContents" style="padding: 120px;">
-						
-						
-							<span class="end_photo_org"><img width="50%" height="50%" src="https://imgnews.pstatic.net/image/413/2021/08/24/0000124475_001_20210824141017034.jpg?type=w647" alt=""></span>
-							<b style="font-size: 18px;">
-							<br><br>파리생제르맹(PSG)이 에두아르도 카마빙가(18, 스타드 렌)도 품을 기세다.<br><br>PSG는 올여름 이적시장의 주인공이었다. 지난 시즌 프랑스 리그앙 트로피를 릴에 빼앗기고 유럽축구연맹(UEFA) 챔피언스리그(UCL) 우승에도 실패하자 분노의 영입에 나선 것이다. 마우리시오 포체티노 감독에게 더욱 지지를 보내기 위함도 있었다.<br><br>월드클래스 선수들이 대거 합류해다. 바르셀로나 원클럽맨이자 올타임 넘버원으로 평가받는 리오넬 메시가 PSG 유니폼을 입었고 레알 마드리드 역사상 최고 센터백 세르히오 라모스도 PSG로 왔다. 이 밖에도 리버풀 중원 핵이었던 조르지니오 바이날둠, 이탈리아 UEFA 유럽축구선수권대회(유로2020) 우승 주역 잔루이지 돈나룸마도 합류했다.<br><br>모두 이적료 한 푼 들지 않는 자유계약(FA) 영입이었던 게 고무적이다. 이적료가 든 선수는 아슈라프 하키미 뿐이다. PSG는 하키미 영입에 6,000만 유로(약 823억 원)를 지불했다. 세계적 명성과 압도적 기량을 가진 5명을 데려온 PSG는 프랑스, 유럽 무대 제패를 동시에 노리고 있다.<br><br>PSG 폭주는 멈추지 않을 전망이다. 테오 에르난데스, 폴 포그바를 비롯한 선수들을 추가로 원하고 있다. 킬리안 음바페와의 재계약도 PSG 목표다. 원대한 꿈을 향한 계획이 차근차근 이뤄지며 PSG는 유럽 최고 스쿼드를 가진 명문 팀으로 거듭나는 중이다.<br><br>2002년생 카마빙가도 PSG 타깃이다. 카마빙가는 프랑스 최고 신성으로 10대 중반 때부터 스타드 렌 주전 미드필더로 뛰었다. 엄청난 활동량과 공수 기여도를 보며 포스트 은골로 캉테라는 별칭까지 붙었다. 높은 명성 속 프랑스 성인 대표팀까지 발탁됐다. 렌 돌풍을 이끌며 팀을 UCL 무대에 올려놓기도 했다. 지난 시즌엔 등번호 10번을 달고 팀 에이스 역할을 했다.<br><br>내년 여름 카마빙가는 렌과의 계약이 만료된다. 렌 입장에선 구단 최고 가치 선수를 공짜로 내보내고 싶지 않을 것이다. 따라서 올여름 매각 가능성이 높은데 PSG가 유력 후보로 점쳐졌다.<br><br>스페인 '마르카'는 "PSG와 렌이 합의에 가까워졌다. 카마빙가는 프랑스 선수 비중을 늘리려는 PSG에 가장 부합한 젊은 자원이다. 타팀들도 노리고 있지만 카마빙가 최우선은 리그앙 잔류기에 PSG로 갈 가능성이 높다"고 전했다.<br><br>
-						</b>
-						
-						
-						
-						<p class="source"><b>기사제공</b> 인터풋볼</p>
+  <section class="home-section" >
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+    </div>
+    <div class="text"></div>
+  </section>
+<%
 
-						
+        // 파싱할 사이트를 적어준다(해당 사이트에 대한 태그를 다 긁어옴)
 
-						
-						
-							
-								<p class="byline">신동훈 기자 hun7599@interfootball.co.kr</p>
-							
-				
-						
-					</div>
+ 	Document doc2 = Jsoup.connect("https://sports.news.naver.com/kfootball/index").get();
+
+	Document doc1 = Jsoup.connect("https://sports.news.naver.com/kfootball/news/index?isphoto=N").get();
+
+
+
+        //System.out.println(doc2.data());
+
+        //System.out.println(doc2.body());
+
+        
+
+                // list 속성안에 li 요소 데이터들을 긁어온다
+
+        Elements posts = doc2.body().getElementsByClass("news_list");
+
+        //System.out.println(doc2.getElementsByClass("news_list"));
+
+        Elements file = posts.select("li");
+
+        //System.out.println(posts.select("li"));
+
+        
+
+        // li 요소 데이터들 반복적으로 츨력(li 요소 끝날때까지 즉, li개수만큼 반복문)
+
+        // select() : select()를 통해 더 구석구석 데이터에 접근
+
+        // 구성요소.text() : 구성요소 값을 반환(태그는 포함되지 않음)
+
+        // 구성요소.attr("속성이름") : 구성요소에 "속성이름"에 대한 값을 반환
+		
+        //Elements element2 = doc1.select("div.text:not(span)");
+        //System.out.println(element2.select("text"));
+        
+        //Elements newspost = element2.select("li");
+        //System.out.println("Title : " + element2.select("a").text());
+        //System.out.println("Link : " + element2.select("a").attr("href"));
+        
+        StringBuilder sbHtml1 = new StringBuilder();
+        
+        for(Element e : file){
+        	
+        	
+        	
+        	sbHtml1.append( "<div> <a> Title : ' "+ e.select("a").text() +"'</a></div>" );
+        	sbHtml1.append( "<div> <a href='https://sports.news.naver.com/kfootball/news/index?isphoto=N'>'https://sports.news.naver.com" + e.select("a").attr("href")  + "</a></div>" );
+        	
+        	//System.out.println("Title : " + e.select("a").text());
+
+        	//System.out.println("Link : " + e.select("a").attr("href"));
+
+                // 사이트 링크가 이상하게 올라가있는 관계로 문자열을 다듬어야 한다
+
+                // substring을 사용해 원하는 문자열만큼 자르고 앞에 주소부분을 붙여주면 끝
+
+               // System.out.println("Link : http://www.playdb.co.kr/magazine/" + e.select(".tit a").attr("href").substring(2, 70));
+
+        	//System.out.println("Image : " + e.select(".thumb img").attr("src"));
+
+        	//System.out.println("text : " + e.select(".txt").text());
+
+        	//System.out.println();
+        }
+        
+	        
+%>
+	
+				<div class="board" align="middle">
+					<table style="background-color:white;">
+					<tr>
+						<th width="3%">&nbsp;</th>
+						<th width="5%"></th>
+						<th >네이버 축구 인기 뉴스</th>
+					</tr>
+					</table>
+					<%=sbHtml1%>
+				</div>
 <script>
+	    
+	var filetag = document.getElementsbyTagName("file")
+	= document.querySelector(".file");
+	    
+	    
   let arrow = document.querySelectorAll(".arrow");
   for (var i = 0; i < arrow.length; i++) {
     arrow[i].addEventListener("click", (e)=>{

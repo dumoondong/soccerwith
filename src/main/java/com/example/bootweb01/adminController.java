@@ -133,8 +133,6 @@ public class adminController {
 		System.out.println( "commoncodeEdit_ok() 호출" );
 		
 		SmallcodeTO to = new SmallcodeTO();
-		//System.out.println(request.getParameter( "smallinfo" ));
-		//System.out.println(request.getParameter( "smallremark" ));
 		to.setSeq(request.getParameter( "seq" ) );
 		to.setSmallcode(request.getParameter("smallcode"));
 		to.setSmallinfo(request.getParameter( "smallinfo" ));

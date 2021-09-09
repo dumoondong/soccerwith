@@ -115,7 +115,7 @@ public class AdminDAO {
 			String sql = "delete from largecode where seq=?";
 			pstmt = conn.prepareStatement( sql );
 			pstmt.setString( 1, to.getSeq() );
-			System.out.println(to.getSeq());
+			
 			int result = pstmt.executeUpdate();
 			if( result == 0 ) {
 				flag = 1;
@@ -168,7 +168,7 @@ public class AdminDAO {
 		try {
 			conn = this.dataSource.getConnection();
 			
-			String sql = "select * from smallcode";
+			String sql = "select * from smallcode order by smallcode asc";
 			pstmt = conn.prepareStatement( sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
 			
 			rs = pstmt.executeQuery();
@@ -201,7 +201,7 @@ public class AdminDAO {
 		
 		try {
 			conn = this.dataSource.getConnection();
-			String sql = "select * from smallcode where smallcode like ?";
+			String sql = "select * from smallcode where smallcode like ? order by smallcode asc";
 			pstmt = conn.prepareStatement( sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
 			pstmt.setString( 1, "%"+largecode+"%" );
 			rs = pstmt.executeQuery();

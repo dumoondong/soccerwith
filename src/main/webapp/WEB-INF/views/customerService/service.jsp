@@ -16,6 +16,7 @@
 		String dedlornot = to.getDeleornot();
 		
 		sbHtml.append( "<tr class='table-active'>" );
+		sbHtml.append( "	<td><div class='pgn-checkbox'></div><input type='checkbox'><span></span> </td>" );
 		sbHtml.append( "	<td width='50%' >" );
 		sbHtml.append( "		<a href='./service_ask.do?seq=" + seq + "'>" + asktitle + "</a>" );
 		sbHtml.append( "	<td width='25%'>" + adate + "</td>" );
@@ -66,6 +67,8 @@
 		<table style="width:40%; text-align: center;" class="table table-hover">
 		  <thead>
 		    <tr>
+		      <th> <div class="pgn-checkbox"></div><input type="checkbox" id="all_select"><span></span>
+		      </th>
 		      <th scope="col">제목</th>
 		      <th scope="col">작성일</th>
 		      <th scope="col">답변여부</th>
@@ -127,6 +130,15 @@
   sidebarBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("close");
   });
+  
+$('#all_select').click(function() {
+	if ($("input:checkbox[id='all_select']").prop("checked")){
+		$("input[type=checkbox]").prop("checked",true);
+	}else{
+		$("input[type=checkbox]").prop("checked",false);
+	}
+});
+
 </script>
 </body>
 </html>

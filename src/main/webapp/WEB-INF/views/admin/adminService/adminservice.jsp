@@ -15,17 +15,20 @@
 		String id = to.getId();
 		String asktitle = to.getAsktitle();
 		String adate = to.getAdate();
+		String replyid = to.getReplyid();
 		String dedlornot = to.getDeleornot();
 		String rdate = to.getRdate();
-		
+		System.out.println(to.getReplyid());
 		sbHtml.append( "<tr class='table-active'>" );
-		sbHtml.append( "	<td width='5%'>" + seq + "</td>" );
-		sbHtml.append( "	<td>" + id + "</td>" );
-		sbHtml.append( "	<td width='20%'>" );
+		sbHtml.append( "	<td width='3%'><div class='pgn-checkbox'></div><input type='checkbox'><span></span> </td>" );
+		sbHtml.append( "	<td width='6%'>" + seq + "</td>" );
+		sbHtml.append( "	<td width='7%'>" + id + "</td>" );
+		sbHtml.append( "	<td>" );
 		sbHtml.append( "		<a href='./adminservice_reply.do?seq=" + seq + "'>" + asktitle + "</a>" );
-		sbHtml.append( "	<td>" + adate + "</td>" );
-		sbHtml.append( "	<td>" + dedlornot + "</td>" );
-		sbHtml.append( "	<td>" + rdate + "</td>" );
+		sbHtml.append( "	<td width='16%'>" + adate + "</td>" );
+		sbHtml.append( "	<td width='10%'>" + replyid + "</td>" );
+		sbHtml.append( "	<td width='6%'>" + dedlornot + "</td>" );
+		sbHtml.append( "	<td width='16%'>" + rdate + "</td>" );
 		sbHtml.append( "</tr>" );
 	}
 	
@@ -68,10 +71,13 @@
 		<table style="width:70%; text-align: center;" class="table table-hover">
 		  <thead>
 		    <tr>
+		      <th> <div class="pgn-checkbox"></div><input type="checkbox" id="all_select"><span></span>
+		      </th>
 		      <th scope="col">번호</th>
 		      <th scope="col">ID</th>
 		      <th scope="col">제목</th>
 		      <th scope="col">작성날짜</th>
+		      <th scope="col">답변 관리자 ID</th>
 		      <th scope="col">답변여부</th>
 		      <th scope="col">답변날짜</th>
 		    </tr>
@@ -95,6 +101,14 @@
   sidebarBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("close");
   });
+  
+  $('#all_select').click(function() {
+		if ($("input:checkbox[id='all_select']").prop("checked")){
+			$("input[type=checkbox]").prop("checked",true);
+		}else{
+			$("input[type=checkbox]").prop("checked",false);
+		}
+	});
 </script>
 </body>
 </html>

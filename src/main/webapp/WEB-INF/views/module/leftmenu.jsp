@@ -47,16 +47,16 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">리그/컵</a></li>
-          <li><a href="#">EPL</a></li>
-          <li><a href="leaguelaliga.do">라리가</a></li>
-          <li><a href="leagueserieA.do">세리에A</a></li>
-          <li><a href="leaguebundesliga.do">분데스리가</a></li>
+          <li><a href="league.do?list=epl">EPL</a></li>
+          <li><a href="league.do?list=라리가">라리가</a></li>
+          <li><a href="league.do?list=세리아a">세리에A</a></li>
+          <li><a href="league.do?list=분데스리가">분데스리가</a></li>
           <li><a href="#">K리그</a></li>
         </ul>
       </li>
       <li>
         <div class="iocn-link">
-          <a href="/news.do">
+          <a href="/newstemplate.do">
             <i class='bx bx-book-alt' ></i>
             <span class="link_name">뉴스/소식</span>
           </a>
@@ -72,21 +72,19 @@
       </li>
       <li>
         <div class="iocn-link">
-          <a href="/list.do">
+          <a href="/board.do">
             <i class='bx bx-grid-alt'></i>
             <span class="link_name">게시판</span>
           </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
+          <!-- <i class='bx bxs-chevron-down arrow' ></i> -->
         </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">게시판</a></li>
-          <li><a href="#">전체</a></li>
-          <li><a href="#">축구</a></li>
-          <li><a href="#">축구동영상</a></li>
-          <li><a href="#">질문</a></li>
-          <li><a href="#">인기</a></li>
-          <li><a href="#">공지사항</a></li>
-        </ul>
+<!--         <ul class="sub-menu">
+          <li><a class="link_name" href="/board.do">게시판</a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+        </ul> -->
       </li>
       <%
       	if(loginUser == null){

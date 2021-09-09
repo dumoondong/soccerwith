@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <%	
 	String loginUser = (String)session.getAttribute("loginUser");
+
+
 %>
 <html>
   <head>

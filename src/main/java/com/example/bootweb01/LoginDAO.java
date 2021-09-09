@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 public class LoginDAO {
 	@Autowired
 	private DataSource dataSource;
-
+	//로그인
 	public int memberJoinOk(MemberTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -52,7 +52,7 @@ public class LoginDAO {
 		}	
 		return flag;
 	}
-	
+	//진행예정
 	public int idcheck(MemberTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -84,7 +84,7 @@ public class LoginDAO {
 		}	
 		return flag;
 	}
-	
+	//회원가입
 	public int regiOk(MemberTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

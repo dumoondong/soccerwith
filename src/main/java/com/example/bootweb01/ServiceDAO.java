@@ -54,7 +54,7 @@ public class ServiceDAO {
 		try {
 			conn = this.dataSource.getConnection();
 			
-			String sql = "select seq,asktitle, date_format(adate, '%Y-%m-%d') adate, delornot from memberservice where id = ? order by seq desc";
+			String sql = "select seq,asktitle, date_format(adate, '%Y년 %m월 %d일') adate, delornot from memberservice where id = ? order by seq desc";
 			pstmt = conn.prepareStatement( sql );
 			pstmt.setString( 1, id );
 			rs = pstmt.executeQuery();
@@ -87,7 +87,7 @@ public class ServiceDAO {
 		try {
 			conn = this.dataSource.getConnection();
 			
-			String sql = "select seq,id, adate,asktitle,askcontent ,replyid,rdate,replytitle,replycontent,delornot from memberservice where seq=? ";
+			String sql = "select seq,id, date_format(adate, '%Y년 %m월 %d일 %H시 %S분') adate,asktitle,askcontent ,replyid,date_format(rdate, '%Y년 %m월 %d일 %H시 %S분') rdate,replytitle,replycontent,delornot from memberservice where seq=? ";
 			pstmt = conn.prepareStatement( sql );
 			pstmt.setString( 1, to.getSeq() );
 			rs = pstmt.executeQuery();
@@ -122,7 +122,7 @@ public class ServiceDAO {
 		try {
 			conn = this.dataSource.getConnection();
 			
-			String sql = "select seq,id,asktitle, date_format(adate, '%Y-%m-%d') adate, delornot,date_format(rdate, '%Y-%m-%d') rdate  from memberservice order by seq desc";
+			String sql = "select seq,id,asktitle, date_format(adate, '%Y년 %m월 %d일 %H시 %S분') adate,replyid, delornot,date_format(rdate, '%Y년 %m월 %d일 %H시 %S분') rdate  from memberservice order by seq desc";
 			pstmt = conn.prepareStatement( sql );
 			rs = pstmt.executeQuery();
 			
@@ -132,6 +132,7 @@ public class ServiceDAO {
 				to.setId(rs.getString("id"));
 				to.setAsktitle(rs.getString("asktitle"));
 				to.setAdate(rs.getString("adate"));
+				to.setReplyid(rs.getString("replyid"));
 				to.setDeleornot(rs.getString("delornot"));
 				to.setRdate(rs.getString("rdate"));
 				

@@ -2,15 +2,65 @@ package com.example.bootweb01;
 
 public class BoardTO {
 	private String seq;
+	private String title;
+	private String content;
+	private String id;
+	private String smallcode;
+	private String filename;
+	private long filesize;
+	private String recommend;
 	private String subject;
 	private String writer;
 	private String mail;
 	private String password;
-	private String content;
 	private String hit;
 	private String wip;
 	private String wdate;
 	private int wgap;
+	private String smallinfo;
+	
+	public String getSmallinfo() {
+		return smallinfo;
+	}
+	public void setSmallinfo(String smallinfo) {
+		this.smallinfo = smallinfo;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getSmallcode() {
+		return smallcode;
+	}
+	public void setSmallcode(String smallcode) {
+		this.smallcode = smallcode;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public long getFilesize() {
+		return filesize;
+	}
+	public void setFilesize(long filesize) {
+		this.filesize = filesize;
+	}
+	public String getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
 	
 	public String getSeq() {
 		return seq;
