@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
     
 <%	
- 	int flag = (Integer)request.getAttribute( "flag" );
+  	int flag = (Integer)request.getAttribute( "flag" );
 		
 	out.println( "<script type='text/javascript'>" );
 	if( flag == 0 ) {
+		out.println( "alert( '작성되었습니다.' );" );
 		out.println( "location.href='./board.do';" );
 	} else {
 		out.println( "alert( '실패했습니다.' );" );
 		out.println( "history.back();" );
 	}
-	out.println( "</script>" );
+	out.println( "</script>" ); 
 %>

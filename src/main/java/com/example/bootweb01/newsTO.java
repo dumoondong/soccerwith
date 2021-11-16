@@ -9,7 +9,7 @@ public class newsTO {
 	private String id;
 	private String classify;
 	private String newsimage;
-	private String wdate;
+	
 	public String getSeq() {
 		return seq;
 	}
@@ -58,11 +58,4 @@ public class newsTO {
 	public void setNewsimage(String newsimage) {
 		this.newsimage = newsimage;
 	}
-	public String getWdate() {
-		return wdate;
-	}
-	public void setWdate(String wdate) {
-		this.wdate = wdate;
-	}
-	
 }

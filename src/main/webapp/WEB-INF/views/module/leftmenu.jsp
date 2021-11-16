@@ -43,15 +43,15 @@
             <i class='bx bx-collection' ></i>
             <span class="link_name">리그/컵</span>
           </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
+          <!-- <i class='bx bxs-chevron-down arrow' ></i> -->
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">리그/컵</a></li>
-          <li><a href="league.do?list=epl">EPL</a></li>
-          <li><a href="league.do?list=라리가">라리가</a></li>
-          <li><a href="league.do?list=세리아a">세리에A</a></li>
-          <li><a href="league.do?list=분데스리가">분데스리가</a></li>
-          <li><a href="#">K리그</a></li>
+          <li><a class="link_name" href="league.do">리그/컵</a></li>
+<!--           <li><a href="league.do?list=epl">EPL</a></li>
+          <li><a href="league.do?list=laliga">라리가</a></li>
+          <li><a href="league.do?list=serieA">세리에A</a></li>
+          <li><a href="league.do?list=bundes">분데스리가</a></li>
+          <li><a href="#">K리그</a></li> -->
         </ul>
       </li>
       <li>
@@ -63,11 +63,11 @@
           <i class='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">뉴스/소식</a></li>
-          <li><a href="domestic.do">국내축구</a></li>
-          <li><a href="oversea.do">해외축구</a></li>
-          <li><a href="retire.do">은퇴선수</a></li>
-          <li><a href="youth.do">꿈나무들</a></li>
+          <li><a class="link_name" href="newstemplate.do">뉴스/소식</a></li>
+          <li><a href="newstemplate.do?classify=국내뉴스">국내뉴스</a></li>
+          <li><a href="newstemplate.do?classify=해외뉴스">해외뉴스</a></li>
+          <li><a href="newstemplate.do?classify=은퇴선수">은퇴선수</a></li>
+          <li><a href="newstemplate.do?classify=꿈나무들">꿈나무들</a></li>
         </ul>
       </li>
       <li>
@@ -78,13 +78,9 @@
           </a>
           <!-- <i class='bx bxs-chevron-down arrow' ></i> -->
         </div>
-<!--         <ul class="sub-menu">
-          <li><a class="link_name" href="/board.do">게시판</a></li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-        </ul> -->
+        <ul class="sub-menu">
+        <li><a class="link_name" href="/board.do">게시판</a></li>
+        </ul>
       </li>
       <%
       	if(loginUser == null){

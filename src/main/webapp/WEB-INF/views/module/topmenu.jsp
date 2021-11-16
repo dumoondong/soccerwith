@@ -50,7 +50,7 @@
 	      <ul>
 	        <li><a href="login.do">로그인</a></li>
 	        <li><a href="registration.do">회원가입</a></li>
-	        <li><a href="#">아이디찾기</a></li>
+	        <li><a href="IDsearch.do">아이디찾기</a></li>
 	      </ul>
 	    </div>
   	</nav>

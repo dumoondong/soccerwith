@@ -98,7 +98,7 @@
 		<div style="width:60px; margin:0px 0px 70px 0px;"></div>
 		<div style="font-size: 15px; margin:0px 0px -30px -1310px;" class="bold";><span  style="font-size: 25px" class="txt_blue">게시판 </span>글쓰기</div>
 		<button type="button" style="margin:0px 0px 40px 1380px;" class="btn btn-secondary btn-sm" onclick="location.href='./board.do'">목록</button>
-		<form action="board_write_ok.do" method="get" name="wfrm" >
+		<form action="board_write_ok.do" method="post" name="wfrm" >
 			<div class="wrapper" style="text-align:left; width:60%;" >
 				<select class="form-select form-select-sm"onchange="myFunction(this.value)" aria-label=".form-select-sm example">
 				  <option selected>분류 선택</option>

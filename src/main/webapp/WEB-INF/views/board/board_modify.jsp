@@ -8,10 +8,6 @@
 
 	ArrayList<SmallcodeTO> datas = (ArrayList)request.getAttribute( "datas" ); // 소코드 리스트
 	SmallcodeTO infoto = (SmallcodeTO)request.getAttribute( "tosc" ); //선택한 메뉴의 코드정보
-	
-	String selinfo = infoto.getSmallinfo(); //선택한 메뉴의 코드정보
-	
-	StringBuilder sbHtml = new StringBuilder(); // 소코드 검색
 	StringBuilder sbHtml1 = new StringBuilder(); // 메뉴 소코드 검색  
 	StringBuilder sbHtml2 = new StringBuilder(); // 전체 검색
 	
@@ -32,9 +28,8 @@
 			}
 		}
 
-	
 	BoardTO to = (BoardTO)request.getAttribute( "to" );
-	
+		
 	String seq = to.getSeq();
 	String title = to.getTitle();
 	String content = to.getContent();
@@ -43,11 +38,16 @@
 	String smallcode = to.getSmallcode();
 	String hit = to.getHit();
 	String recommend = to.getRecommend();
+	String smallinfo = infoto.getSmallinfo();
+
 %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
+     <!-- SmartEditor2 라이브러리 -->
+    <script type="text/javascript" src="./smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script> 
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/menustyle2.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -96,63 +96,94 @@
 	</section>
 	<div align="middle">
 		<div style="width:60px; margin:0px 0px 70px 0px;"></div>
-		<div style="font-size: 15px; margin:0px 0px -30px -1350px;" class="bold";><span  style="font-size: 25px" class="txt_blue">
-		<%if(selinfo==null){%>전체<% }else{%>
-		<%=selinfo %><%} %></span>게시판</div>
-		
-		<%if(loginUser != null){ %>		 <!--로그인 했을경우  -->
-			<input type="hidden" name="id" value="<%=loginUser %>" />
-			<%if(loginUser.equals(id)){ %><!--작성 id와 로그인한 id가 같을 경우 -->
-				<div class="btn-group" style="margin: 0px 0px 40px 1290px;" role="group" aria-label="Basic example">
-					<button type="button" class="btn btn-secondary btn-sm" onclick="location.href='./board.do'">수정</button>
-					<button type="button" class="btn btn-secondary btn-sm" onclick="location.href='./board.do'">삭제</button>
-					<button type="button" class="btn btn-secondary btn-sm" onclick="location.href='./board.do'">목록</button>
-				</div>
-			<%}else{%>					<!-- 로그인id와 작성id가 같을경우 -->
-				<button type="button" style="margin:0px 0px 40px 1380px;" class="btn btn-secondary btn-sm" onclick="location.href='./board.do'">목록</button>
-			<%}}else{%>					<!-- 로그인 안했을경우 -->
-			<button type="button" style="margin:0px 0px 40px 1380px;" class="btn btn-secondary btn-sm" onclick="location.href='./board.do'">목록</button>
-		<%} %>
-		<form action="board_write_ok.do" method="post" name="mfrm" >
+		<div style="font-size: 15px; margin:0px 0px -30px -1310px;" class="bold";><span  style="font-size: 25px" class="txt_blue">게시판 </span>수정</div>
+		<button type="button" style="margin:0px 0px 40px 1380px;" class="btn btn-secondary btn-sm" onclick="location.href='./board.do'">목록</button>
+		<form action="board_modify_ok.do" method="post" name="mfrm" >
 			<div class="wrapper" style="text-align:left; width:60%;" >
 				<div class="input-group">
+					<span style="width:70px;" class="input-group-text" id="basic-addon1">분류</span>
+					<div class="form-control" aria-label="Username" aria-describedby="basic-addon1"><%=smallinfo %></div>
+				</div>	
+				<div class="input-group">
 				   <span style="width:70px;"class="input-group-text" id="basic-addon1">제목</span>
-				   <div class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=title %></div>
+				   <input type="text" class="form-control" name="title" value="<%=title %>" aria-label="Username" aria-describedby="basic-addon1"/>
 				</div>
 				<div class="input-group">
 					<span style="width:70px;" class="input-group-text" id="basic-addon1">ID</span>
-					<div class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=id %></div>
+					<div class="form-control" aria-label="Username" aria-describedby="basic-addon1"><%=id %></div>
 				</div>	
 				<div class="input-group">
 					<span style="width:70px;" class="input-group-text" id="basic-addon1">작성일</span>
-					<div style="width:300px;" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=wdate %></div>
+					<div style="width:300px;" class="form-control" aria-label="Username" aria-describedby="basic-addon1"><%=wdate %></div>
 					<span style="width:70px;" class="input-group-text" id="basic-addon1">조회수</span>
-					<div style="text-align: center;" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=hit %></div>
+					<div style="text-align: center;" class="form-control" aria-label="Username" aria-describedby="basic-addon1"><%=hit %></div>
 					<span style="width:70px;" class="input-group-text" id="basic-addon1">추천수</span>
-					<div style="text-align: center;" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=recommend %></div>
-					<button style="width:70px;" type="button" class="btn btn-secondary btn-sm"><i class='bx bxs-like'></i></button>
+					<div style="text-align: center;" class="form-control" aria-label="Username" aria-describedby="basic-addon1"><%=recommend %></div>
 				</div>	
 				<div class="input-group">
-					<span style="width:70px;" class="input-group-text">내용</span>
-					<div style="overflow:scroll; height:600px;" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=content %></div>
+					<textarea class="form-control"  aria-label="Username" name="content" id="smartEditor" rows="20" aria-describedby="basic-addon1"><%=content %></textarea>
 				</div>
 			</div><br /><br /><br />
+			<input type="hidden" name="seq" value="<%=seq %>" />
+			<input type="hidden" name="smallcode" value="<%=smallcode %>" />
+			<input type="submit" id="submit1" value="수정" class="btn btn-secondary"/>
+			<button type="button" class="btn btn-secondary" onclick="location.href='./board_view.do?seq=<%=seq%>'">취소</button>
 		</form>
 	</div>
 <script>
-  let arrow = document.querySelectorAll(".arrow");
-  for (var i = 0; i < arrow.length; i++) {
-    arrow[i].addEventListener("click", (e)=>{
-   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-   arrowParent.classList.toggle("showMenu");
-    });
-  }
-  let sidebar = document.querySelector(".sidebar");
-  let sidebarBtn = document.querySelector(".bx-menu");
-  console.log(sidebarBtn);
-  sidebarBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("close");
-  });
+var oEditors = []; 
+nhn.husky.EZCreator.createInIFrame({ 
+oAppRef : oEditors, 
+elPlaceHolder : "smartEditor",
+sSkinURI : "./smarteditor2/SmartEditor2Skin.html",
+fCreator : "createSEditor2", 
+	htParams : { 
+	// 툴바 사용 여부 (true:사용/ false:사용하지 않음) 
+	bUseToolbar : true, 
+	// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+	bUseVerticalResizer : false, 
+	// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음) 
+	bUseModeChanger : false
+} 
+});	
+let arrow = document.querySelectorAll(".arrow");
+for (var i = 0; i < arrow.length; i++) {
+	arrow[i].addEventListener("click", (e)=>{
+	let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+	arrowParent.classList.toggle("showMenu");
+	});
+}
+let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".bx-menu");
+console.log(sidebarBtn);
+sidebarBtn.addEventListener("click", ()=>{
+	sidebar.classList.toggle("close");
+});
+
+window.onload = function() {
+	document.getElementById('submit1').onclick = function() {
+		oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
+		var value = document.getElementById("smartEditor").value;
+		console.log(value);
+		
+ 		if( document.wfrm.smallcode.value.trim() == '' ) {
+			alert( '분류를 선택하세요.' );
+			return false;
+		}
+		if( document.wfrm.title.value.trim() == '' ) {
+			alert( '제목 입력하셔야 합니다.' );
+			return false;
+		} 
+		if(value == "" || value == null || value == '&nbsp;' || 
+			value == '<br>' || value == '<br/>' || value == '<p>&nbsp;</p>'){ 
+			alert("내용을 작성해주세요."); 
+			oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱 
+			return false; 
+		}
+
+		document.wfrm.submit();
+	};
+};
   
 </script>
 </body>

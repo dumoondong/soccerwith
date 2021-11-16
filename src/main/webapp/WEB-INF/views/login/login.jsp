@@ -7,6 +7,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
    <!----<title>Login Form Design | CodeLab</title>---->
     <link rel="stylesheet" type="text/css" href="./css/menustyle2.css">
     <link rel="stylesheet" type="text/css" href="./css/login.css">
@@ -42,10 +43,7 @@
 	  <div class="main_div">
 	    <div style="font-size: 250%" class="title">SOCCERWITH</div>
 	    <br />
-	    <div class="social_icons">
-	      <a href="#"><i class="fab fa-facebook-f"></i> <span>Facebook</span></a>
-	      <a href="#"><i class="fab fa-twitter"></i><span>Twitter</span></a>
-	    </div>
+
 	    <form action="login_ok.do" method="post">
 	   	  <div class="input_box">
 	        <input type="text" name="id" placeholder="ID" required>
@@ -57,21 +55,42 @@
 	      </div>
 	      <br />
 	      <div class="option_div">
+	      
 	        <div class="forget_div">
-	          <a href="#">아이디 찾기</a>
+	          <a href="IDsearch.do">아이디 찾기</a>
 	        </div>
+
 	        <div class="forget_div">
-	          <a href="#">비밀번호 찾기</a>
+	          <a href="PWsearch.do">비밀번호 찾기</a>
 	        </div>
 	      </div>
+	      
+	      
+	      
 	      <div class="input_box button">
 	        <input type="submit" value="로그인">
 	      </div>
+	      
 	      <div class="sign_up">
 	        회원이 아니십니까? <a href="/registration.do"> 회원가입</a>
 	      </div>
+
 	    </form>
+		<!-- <li onclick="kakaoLogin();">
+	      <a href="javascript:void(0)">
+	          <span>카카오 로그인</span>
+	      </a>
+		</li>
+		<li onclick="kakaoLogout();">
+	      <a href="javascript:void(0)">
+	          <span>카카오 로그아웃</span>
+	      </a>
+		</li> -->
 	  </div>
+	  
+	  
+	  
+	  
   <script>
   let arrow = document.querySelectorAll(".arrow");
   for (var i = 0; i < arrow.length; i++) {
@@ -86,7 +105,79 @@
   sidebarBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("close");
   });
+  
+  
+  Kakao.init('dfec50b153cd66e82a8c94b3cb65c57e'); //발급받은 키 중 javascript키를 사용해준다.
+  console.log(Kakao.isInitialized()); // sdk초기화여부판단
+  //카카오로그인
+  function kakaoLogin() {
+      Kakao.Auth.login({
+        success: function (response) {
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function (response) {
+          	  console.log(response)
+            },
+            fail: function (error) {
+              console.log(error)
+            },
+          })
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+    }
+  //카카오로그아웃  
+  function kakaoLogout() {
+      if (Kakao.Auth.getAccessToken()) {
+        Kakao.API.request({
+          url: '/v1/user/unlink',
+          success: function (response) {
+          	console.log(response)
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+        Kakao.Auth.setAccessToken(undefined)
+      }
+    }  
+  
+//기존 로그인 상태를 가져오기 위해 Facebook에 대한 호출
+  function statusChangeCallback(res){
+  	statusChangeCallback(response);
+  }
 
+  function fnFbCustomLogin(){
+  	FB.login(function(response) {
+  		if (response.status === 'connected') {
+  			FB.api('/me', 'get', {fields: 'name,email'}, function(r) {
+  				console.log(r);
+  			})
+  		} else if (response.status === 'not_authorized') {
+  			// 사람은 Facebook에 로그인했지만 앱에는 로그인하지 않았습니다.
+  			alert('앱에 로그인해야 이용가능한 기능입니다.');
+  		} else {
+  			// 그 사람은 Facebook에 로그인하지 않았으므로이 앱에 로그인했는지 여부는 확실하지 않습니다.
+  			alert('페이스북에 로그인해야 이용가능한 기능입니다.');
+  		}
+  	}, {scope: 'public_profile,email'});
+  }
+
+  window.fbAsyncInit = function() {
+  	FB.init({
+  		appId      : '1381167658952543', // 내 앱 ID를 입력한다.
+  		cookie     : true,
+  		xfbml      : true,
+  		version    : 'v10.0'
+  	});
+  	FB.AppEvents.logPageView();   
+  };
+  </script>
+
+  <!--반드시 중간에 본인의 앱아이디를 입력하셔야 합니다.-->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v12.0&appId=1381167658952543" nonce="SiOBIhLG"></script>
   </script>
 </body>
 </html>

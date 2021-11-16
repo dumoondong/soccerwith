@@ -15,7 +15,7 @@
 		String adate = to.getAdate();
 		String dedlornot = to.getDeleornot();
 		
-		sbHtml.append( "<tr class='table-active'>" );
+		sbHtml.append( "<tr class='table table-hover'>" );
 		sbHtml.append( "	<td><div class='pgn-checkbox'></div><input type='checkbox'><span></span> </td>" );
 		sbHtml.append( "	<td width='50%' >" );
 		sbHtml.append( "		<a href='./service_ask.do?seq=" + seq + "'>" + asktitle + "</a>" );
@@ -55,25 +55,29 @@
 		<i class='bx bx-menu' ></i>
 	    </div>
 	</section>
-	<div align="middle">
-    	<h2 class="mt-4">고객센터</h2>
+	
+	<div align="container" style=" border:0px solid; padding:80px">
+    	<h2 class="mt-4" style="margin :1135px 1135px 80px 150px; font-size:40px;">내 문의내역</h2>
 		<!-- 회원등급리스트검색 -->
-		<div style="width:60px; margin:0px 0px 8px 0px;"></div>
-		<div style="margin:50px 0px 10px 900px;">
+		<div style="  width:60px; margin:0 auto;"></div>
+		<div style="text-align: right;">
 			<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
- 			 문의</button>
+ 			 문의하기</button>
 		</div>
 		
-		<table style="width:40%; text-align: center;" class="table table-hover">
+		<table style=" width:100%; text-align: center; style" class="table table-hover">
 		  <thead>
 		    <tr>
 		      <th> <div class="pgn-checkbox"></div><input type="checkbox" id="all_select"><span></span>
 		      </th>
 		      <th scope="col">제목</th>
-		      <th scope="col">작성일</th>
-		      <th scope="col">답변여부</th>
+		      <th scope="col">날짜</th>
+		      <th scope="col">처리상태</th>
 		    </tr>
+		    <h1 style="margin :0px 0px 0px 150px; font-size:12px; color:gray;">※ 문의 내용 중 개인정보가 포함되었거나 중복된 문의인 경우 삭제될 수 있습니다.</h1>
+		    <hr />
 		  </thead>
+		  
 		  <tbody>
 				<%=sbHtml %>
 		  </tbody>
@@ -83,6 +87,7 @@
 	<form action="serviceWrite.do?id=<%=loginUser %>" method="get" name="mfrm" >
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
+				
 				<div class="modal-content" style="width: 800px;">
 					<div class="modal-header">
 						<h5 class="modal-title">문의</h5>
@@ -90,28 +95,32 @@
 						<span aria-hidden="true"></span>
 						</button>
 					</div>
+					
 					<div class="modal-body">
-					<div class="modal-body" style="margin:20px 20px 20px 20px;">				
-						<div class="row mb-3" style="width:405px;">
-							<div class="col-md-3 themed-grid-col">작성자</div>
-							<div style="background-color:white" class="col-md-9 themed-grid-col"><%=loginUser %></div>
-						</div>	
-						<div class="row mb-3" style="width:405px;">
-							<div class="col-md-3 themed-grid-col">문의제목</div>
-							<input style="background-color:white" name="title" class="col-md-9 themed-grid-col" type="text" >
-						</div>
+						<div class="modal-body" style="margin:20px 20px 20px 20px;">				
+							<div class="row mb-3" style="width:405px;">
+								<div class="col-md-3 themed-grid-col">작성자</div>
+								<div style="background-color:white" class="col-md-9 themed-grid-col"><%=loginUser %></div>
+							</div>
+							
+							<div class="row mb-3" style="width:405px;">
+								<div class="col-md-3 themed-grid-col">문의제목</div>
+								<input style="background-color:white" name="title" class="col-md-9 themed-grid-col" type="text" >
+							</div>
 						
-						<div class="form-group">
-							<label for="exampleTextarea" class="form-label mt-4">문의내용</label>
-							<textarea class="form-control" name="content" id="exampleTextarea" rows="10"></textarea>
-					    </div>
-					</div>
+							<div class="form-group">
+								<label for="exampleTextarea" class="form-label mt-4">문의내용</label>
+								<textarea class="form-control" name="content" id="exampleTextarea" rows="10"></textarea>
+					    	</div>
+						</div>
+					
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" name="id" value=<%=loginUser %> />
 						<input type="submit"  value="문의 "class="btn btn-primary"/>
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 					</div>
+				
 				</div>
 			</div>
 		</div>

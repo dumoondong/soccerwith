@@ -74,4 +74,14 @@ public class loginController {
 	public ModelAndView logout(HttpServletRequest request) {
 		return new ModelAndView("login/logout");
 	}
+	//아이디 찾기
+	@RequestMapping( "IDsearch.do" )
+	public ModelAndView IDsearch(HttpServletRequest request) {
+		return new ModelAndView("search/IDsearch");
+	}
+	//비밀번호 찾기
+	@RequestMapping( "PWsearch.do" )
+	public ModelAndView PWsearch(HttpServletRequest request) {
+	   return new ModelAndView("search/PWsearch");
+	}
 }

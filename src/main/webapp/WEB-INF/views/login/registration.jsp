@@ -59,7 +59,7 @@
           </div>
           <div class="input-box">
             <span class="details">비밀번호</span>
-            <input type="password" name="password1" placeholder="사용할 비밀번호를 입력하세요" required>
+            <input type="password" name="password1" placeholder="사용할 비밀번호를 6글자 이상 입력하세요" required>
           </div>
           <div class="input-box">
             <span class="details">비밀번호 확인</span>

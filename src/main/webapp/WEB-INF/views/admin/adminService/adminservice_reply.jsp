@@ -47,38 +47,60 @@
 	</section>
 	<div align="middle">
 		<h2 class="mt-4">문의내용</h2>
-    	<div style="width:700px; text-align: left">
+		<br />
+    	<div style="width:950px; text-align: left">
+	    	
 	    	<div class="input-group">
-			  <span class="input-group-text" id="basic-addon1">ID</span>
-			  <div class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=id %></div>
-			  <span class="input-group-text" id="basic-addon1">날짜</span>
-			  <div class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=adate %></div>
+			  <span style="background-color:white; border:0px;" class="col-md-2 btn btn-light" id="basic-addon1">ID</span>
+			  <div style="background-color:white; border:0px; color:gray;" class="col-md-3 btn btn-light"  aria-label="Username" aria-describedby="basic-addon1"><%=id %></div>
+			  <span style="background-color:white; border:0px;" class="col-md-2 btn btn-light" id="basic-addon1">날짜</span>
+			  <div style="background-color:white; border:0px; color:gray;" class="col-md-3 btn btn-light"  aria-label="Username" aria-describedby="basic-addon1"><%=adate %></div>
 			</div>	
+			
+			<hr />
+			
 			<div class="input-group">
-			  <span class="input-group-text" id="basic-addon1">문의 제목</span>
-			  <div class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=asktitle %></div>
+			  <span style="background-color:white; border:0px;" class="col-md-2 btn btn-light" id="basic-addon1">문의 제목</span>
+			  <div style="background-color:white; border:0px; color:gray;"class="col-md-3 btn btn-light"  aria-label="Username" aria-describedby="basic-addon1"><%=asktitle %></div>
 			</div>
+			
+			<hr />
+			
 			<div class="input-group">
-				<span class="input-group-text">문의 내용</span>
+				<span style="background-color:white; border:0px solid; margin-top:180px" class="col-md-2 btn btn-light">문의 내용</span>&nbsp
 				<div style="height:400px;" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=askcontent %></div>
 			</div>
+			
+			
 		</div>
+		<br />
+		<hr style="height:3px; color:#000000;" />
+		
 		<form action="adminServiceWrite.do?seq=<%=seq %>" method="post" name="mfrm" >
 	    	<h2 class="mt-4">문의 답변</h2>
-	    	<div style="width:700px; text-align: left">
+	    	<br />
+	    	
+	    	<div style="width:950px; text-align: left">
 		    	<div class="input-group">
-				  <span style="width:95px;"class="input-group-text" id="basic-addon1">ID</span>
-				  <div class="form-control" aria-label="Username" aria-describedby="basic-addon1"><%=loginUser %></div>
-				</div>	
+				  <span style="background-color:white; border:0px;" class="col-md-2 btn btn-light" id="basic-addon1">ID</span>
+				  <div style="background-color:white; border:0px;" class="col-md-3 btn btn-light"  aria-label="Username" aria-describedby="basic-addon1"><%=loginUser %></div>
+			</div>	
+			
+			<hr />	
+				
+			<div class="input-group">
+				 <span style="background-color:white; border:0px;" class="col-md-2 btn btn-light" id="basic-addon1">답변 제목</span>&nbsp
+				 <input style="background-color:white;" class="form-control" name="title" value="<%=replytitle %>" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+			
+			<hr />	
 				<div class="input-group">
-				  <span class="input-group-text" id="basic-addon1">답변 제목</span>
-				  <input type="text" class="form-control" name="title" value="<%=replytitle %>" aria-label="Username" aria-describedby="basic-addon1">
-				</div>
-				<div class="input-group">
-					<span class="input-group-text">답변 내용</span>
+					<span style="background-color:white; border:0px solid; margin-top:180px" class="col-md-2 btn btn-light">답변 내용</span>&nbsp
 					<textarea rows="16" class="form-control" name="content" aria-label="With textarea"><%=replycontent %></textarea>
 				</div>
+				
 				<br/>
+				
 				<div class="form-input" style="text-align: right">
 					<input type="hidden" name="id" value=<%=loginUser %> />
 					<input type="submit" value="답변" class="btn btn-secondary"/>

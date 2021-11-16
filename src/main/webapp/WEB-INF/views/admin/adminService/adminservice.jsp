@@ -19,7 +19,7 @@
 		String dedlornot = to.getDeleornot();
 		String rdate = to.getRdate();
 		System.out.println(to.getReplyid());
-		sbHtml.append( "<tr class='table-active'>" );
+		sbHtml.append( "<tr class='table table-hover'>" );
 		sbHtml.append( "	<td width='3%'><div class='pgn-checkbox'></div><input type='checkbox'><span></span> </td>" );
 		sbHtml.append( "	<td width='6%'>" + seq + "</td>" );
 		sbHtml.append( "	<td width='7%'>" + id + "</td>" );
@@ -68,7 +68,7 @@
     	<h2 class="mt-4">고객문의내역</h2>
 		<!-- 회원등급리스트검색 -->
 		<div style="width:60px; margin:70px 0px 0px 0px;"></div>		
-		<table style="width:70%; text-align: center;" class="table table-hover">
+		<table style="width:85%; text-align: center;" class="table table-hover">
 		  <thead>
 		    <tr>
 		      <th> <div class="pgn-checkbox"></div><input type="checkbox" id="all_select"><span></span>

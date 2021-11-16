@@ -11,7 +11,12 @@
 	ArrayList<BoardTO> codedatas = (ArrayList)request.getAttribute( "codedatas" ); // 해당데이터 게시판 리스트
 	String code = (String)request.getAttribute( "code" ); // 넘겼던 smallcode 값 다시 받기
 	ArrayList<BoardTO> alldatas = (ArrayList)request.getAttribute( "alldatas" ); // 게시판 모든 리스트
-	SmallcodeTO infoto = (SmallcodeTO)request.getAttribute( "to" ); //선택한 메뉴의 코드정보
+	ArrayList<BoardTO> voguedatas = (ArrayList)request.getAttribute( "voguedatas" ); // 게시판 모든 리스트
+	SmallcodeTO infoto = (SmallcodeTO)request.getAttribute( "tosc" ); //선택한 메뉴의 코드정보
+	
+	ArrayList<BoardTO> TitleDatas = (ArrayList)request.getAttribute( "TitleDatas" ); // 해당데이터 게시판 리스트
+	ArrayList<BoardTO> idDatas = (ArrayList)request.getAttribute( "idDatas" ); // 해당데이터 게시판 리스트
+	
 	
 	String selinfo = infoto.getSmallinfo(); //선택한 메뉴의 코드정보
 	
@@ -25,66 +30,163 @@
 		String smallcode = to.getSmallcode();
 		String smallinfo = to.getSmallinfo();
 		if(smallcode.equals("BD001")){		
-			sbHtml1.append("<a class='navbar-brand' href='board.do?smallcode="+smallcode+"'>"+smallinfo+"</a>");
+			sbHtml1.append("<a class='navbar-brand' href='admin_board.do?smallcode="+smallcode+"'>"+smallinfo+"</a>");
 		}else{
-			if(smallcode.equals("BD006")){
+			if(smallcode.equals("BD002")){
 			}else{
 				sbHtml.append("<li class='nav-item'>");
-				sbHtml.append("<a class='nav-link' href='board.do?smallcode="+smallcode+"'>"+smallinfo+"</a>");
+				sbHtml.append("<a class='nav-link' href='admin_board.do?smallcode="+smallcode+"'>"+smallinfo+"</a>");
 				sbHtml.append("</li>");
 			}
 		}
 	}
-	if(code == null || code.equals("BD001")){  //넘겼다가 다시받음 선택 메뉴값이 전체이거나 code 값이 아예 없을때
-		for(BoardTO to : alldatas) {
-			String seq = to.getSeq();
-			String title = to.getTitle();
-			String id = to.getId();
-			String wdate = to.getWdate();
-			String hit = to.getHit();
-			String smallcode = to.getSmallcode();
-			String recommend = to.getRecommend();
-			int wgap = to.getWgap();
-			
-			SCHtml1.append("<tr class='table-active'>");
-			SCHtml1.append("<td width='5%'><i class='bx bxs-like' >"+recommend+"</td>");
-			SCHtml1.append("<th width='5%' scope='row'>"+seq+"</th>");
-			SCHtml1.append( "<td class='left'>" );
-			SCHtml1.append( "<a href='./board_view.do?seq="+seq+"&id="+id+"'>" + title + "</a>" );
-			if( wgap == 0 ) {
-				SCHtml1.append( "	&nbsp;<img src='./images/icon_new.gif' alt='NEW'>" );
+	
+	
+	if(TitleDatas != null || idDatas !=null){
+		if(TitleDatas != null){
+			for(BoardTO to : TitleDatas) {
+				String seq = to.getSeq();
+				String title = to.getTitle();
+				String id = to.getId();
+				String wdate = to.getWdate();
+				String hit = to.getHit();
+				String smallcode = to.getSmallcode();
+				String smallinfo = to.getSmallinfo();
+				//System.out.println(smallinfo2);
+				String recommend = to.getRecommend();
+				int wgap = to.getWgap();
+				
+				SCHtml1.append("<tr class='table table-hover'>");
+				SCHtml1.append("<td width='5%'>"+smallinfo+"</td>");
+				SCHtml1.append("<th width='5%' scope='row'>"+seq+"</th>");
+				SCHtml1.append( "<td class='left'>" );
+				SCHtml1.append( "<a href='./admin_board_view.do?seq="+seq+"&id="+id+"&smallcode="+smallcode+"&loginUser="+loginUser+"'>" + title + "</a>" );
+				if( wgap == 0 ) {
+					SCHtml1.append( "	&nbsp;<img src='./images/icon_new.gif' alt='NEW'>" );
+				}
+				SCHtml1.append( "	</td>" );
+				SCHtml1.append("<td width='15%'>"+id+"</td>");
+				SCHtml1.append("<td width='15%'>"+wdate+"</td>");
+				SCHtml1.append("<td width='5%'>"+hit+"</td>");
+				SCHtml1.append("<td width='5%'>"+recommend+"</td>");
+				SCHtml1.append("</tr>");
 			}
-			SCHtml1.append( "	</td>" );
-			SCHtml1.append("<td width='15%'>"+id+"</td>");
-			SCHtml1.append("<td width='15%'>"+wdate+"</td>");
-			SCHtml1.append("<td width='5%'><i class='bx bxs-show' ></i>"+hit+"</td>");
-			SCHtml1.append("</tr>");
+		}else if(idDatas != null){
+			for(BoardTO to : idDatas) {
+				String seq = to.getSeq();
+				String title = to.getTitle();
+				String id = to.getId();
+				String wdate = to.getWdate();
+				String hit = to.getHit();
+				String smallcode = to.getSmallcode();
+				String smallinfo = to.getSmallinfo();
+				//System.out.println(smallinfo2);
+				String recommend = to.getRecommend();
+				int wgap = to.getWgap();
+				
+				SCHtml1.append("<tr class='table table-hover'>");
+				SCHtml1.append("<td width='5%'>"+smallinfo+"</td>");
+				SCHtml1.append("<th width='5%' scope='row'>"+seq+"</th>");
+				SCHtml1.append( "<td class='left'>" );
+				SCHtml1.append( "<a href='./admin_board_view.do?seq="+seq+"&id="+id+"&smallcode="+smallcode+"&loginUser="+loginUser+"'>" + title + "</a>" );
+				if( wgap == 0 ) {
+					SCHtml1.append( "	&nbsp;<img src='./images/icon_new.gif' alt='NEW'>" );
+				}
+				SCHtml1.append( "	</td>" );
+				SCHtml1.append("<td width='15%'>"+id+"</td>");
+				SCHtml1.append("<td width='15%'>"+wdate+"</td>");
+				SCHtml1.append("<td width='5%'>"+hit+"</td>");
+				SCHtml1.append("<td width='5%'>"+recommend+"</td>");
+				SCHtml1.append("</tr>");
+			}
 		}
 	}else{
-		//small코드에 해당하는 데이터 출력
-		for(BoardTO to : codedatas) {
-			String seq = to.getSeq();
-			String title = to.getTitle();
-			String id = to.getId();
-			String wdate = to.getWdate();
-			String hit = to.getHit();
-			String smallcode = to.getSmallcode();
-			String recommend = to.getRecommend();
-			int wgap = to.getWgap();
-			
-			SCHtml1.append("<tr class='table-active'>");
-			SCHtml1.append("<th width='5%' scope='row'>"+seq+"</th>");
-			SCHtml1.append( "<td class='left'>" );
-			SCHtml1.append( "<a href='./board_view.do?seq="+seq+"&id="+id+"'>" + title + "</a>" );
-			if( wgap == 0 ) {
-				SCHtml1.append( "	&nbsp;<img src='./images/icon_new.gif' alt='NEW'>" );
+		if(code == null || code.equals("BD001")){  //전체 게시판 데이터 출력
+			for(BoardTO to : alldatas) {
+				String seq = to.getSeq();
+				String title = to.getTitle();
+				String id = to.getId();
+				String wdate = to.getWdate();
+				String hit = to.getHit();
+				String smallcode = to.getSmallcode();
+				String smallinfo = to.getSmallinfo();
+				System.out.println(smallcode);
+				//System.out.println(smallinfo2);
+				String recommend = to.getRecommend();
+				int wgap = to.getWgap();
+				if(smallcode.equals("BD099")){
+				}else{
+					SCHtml1.append("<tr class='table table-hover'>");
+					SCHtml1.append("<td width='5%'>"+smallinfo+"</td>");
+					SCHtml1.append("<th width='5%' scope='row'>"+seq+"</th>");
+					SCHtml1.append( "<td class='left'>" );
+					SCHtml1.append( "<a href='./admin_board_view.do?seq="+seq+"&id="+id+"&smallcode="+smallcode+"&loginUser="+loginUser+"'>" + title + "</a>" );
+					if( wgap == 0 ) {
+						SCHtml1.append( "	&nbsp;<img src='./images/icon_new.gif' alt='NEW'>" );
+					}
+					SCHtml1.append( "	</td>" );
+					SCHtml1.append("<td width='15%'>"+id+"</td>");
+					SCHtml1.append("<td width='15%'>"+wdate+"</td>");
+					SCHtml1.append("<td width='5%'>"+hit+"</td>");
+					SCHtml1.append("<td width='5%'>"+recommend+"</td>");
+					SCHtml1.append("</tr>");
+				}
 			}
-			SCHtml1.append( "	</td>" );
-			SCHtml1.append("<td width='15%'>"+id+"</td>");
-			SCHtml1.append("<td width='15%'>"+wdate+"</td>");
-			SCHtml1.append("<td width='5%'>"+hit+"</td>");
-			SCHtml1.append("<td width='5%'>"+recommend+"</td>");
-			SCHtml1.append("</tr>");
+		}else if(code == null || code.equals("BD098")){  //인기 게시판 데이터 출력
+			for(BoardTO to : voguedatas) {
+				String seq = to.getSeq();
+				String title = to.getTitle();
+				String id = to.getId();
+				String wdate = to.getWdate();
+				String hit = to.getHit();
+				String smallcode = to.getSmallcode();
+				String smallinfo = to.getSmallinfo();
+				String recommend = to.getRecommend();
+				int wgap = to.getWgap();
+				
+				if(smallcode.equals("BD099")){
+				}else{
+					SCHtml1.append("<tr class='table table-hover'>");
+					SCHtml1.append("<td width='5%'>"+smallinfo+"</td>");
+					SCHtml1.append("<th width='5%' scope='row'>"+seq+"</th>");
+					SCHtml1.append( "<td class='left'>" );
+					SCHtml1.append( "<a href='./admin_board_view.do?seq="+seq+"&id="+id+"&smallcode="+smallcode+"&loginUser="+loginUser+"'>" + title + "</a>" );
+					if( wgap == 0 ) {
+						SCHtml1.append( "	&nbsp;<img src='./images/icon_new.gif' alt='NEW'>" );
+					}
+					SCHtml1.append( "	</td>" );
+					SCHtml1.append("<td width='15%'>"+id+"</td>");
+					SCHtml1.append("<td width='15%'>"+wdate+"</td>");
+					SCHtml1.append("<td width='5%'>"+hit+"</td>");
+					SCHtml1.append("<td width='5%'>"+recommend+"</td>");
+					SCHtml1.append("</tr>");
+				}
+			}
+		}else{
+			for(BoardTO to : codedatas) { //small코드에 해당하는 데이터 출력
+				String seq = to.getSeq();
+				String title = to.getTitle();
+				String id = to.getId();
+				String wdate = to.getWdate();
+				String hit = to.getHit();
+				String smallcode = to.getSmallcode();
+				String recommend = to.getRecommend();
+				int wgap = to.getWgap();
+				
+				SCHtml1.append("<tr class='table table-hover'>");
+				SCHtml1.append("<th width='5%' scope='row'>"+seq+"</th>");
+				SCHtml1.append( "<td class='left'>" );
+				SCHtml1.append( "<a href='./admin_board_view.do?seq="+seq+"&id="+id+"&smallcode="+smallcode+"&loginUser="+loginUser+"'>" + title + "</a>" );
+				if( wgap == 0 ) {
+					SCHtml1.append( "	&nbsp;<img src='./images/icon_new.gif' alt='NEW'>" );
+				}
+				SCHtml1.append( "	</td>" );
+				SCHtml1.append("<td width='15%'>"+id+"</td>");
+				SCHtml1.append("<td width='15%'>"+wdate+"</td>");
+				SCHtml1.append("<td width='5%'>"+hit+"</td>");
+				SCHtml1.append("<td width='5%'>"+recommend+"</td>");
+				SCHtml1.append("</tr>");
+			}
 		}
 	}
 %>
@@ -108,10 +210,10 @@
    </head>
 <body>
 	<!-- 상단메뉴 -->
-	<jsp:include page="../module/topmenu.jsp" />
+	<jsp:include page="../admin_module/admin_topmenu.jsp" />
 	<!-- 왼쪽메뉴 -->
 	<div class="sidebar close">
-		<jsp:include page="../module/leftmenu.jsp" />
+		<jsp:include page="../admin_module/admin_leftmenu.jsp" />
 	</div>
 	<br /><br /><br />
 	<section class="home-section" >
@@ -129,10 +231,16 @@
 		    <div class="collapse navbar-collapse" id="navbarColor02">
 		      <ul class="navbar-nav me-auto">
 					<%=sbHtml %>
-		      </ul>
-		      <form class="d-flex">
-		        <input class="form-control me-sm-2" type="text" placeholder="Search">
-		        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+		      </ul>      
+		      <form action="admin_board.do"  method="post" name="wfrm" class="d-flex">
+		      	<select style="width:130px; margin:0px 2px 0px 0px;" class="form-select" onchange="myFunction(this.value)" aria-label="Default select example">
+					<option selected>구분</option>
+					<option name="choice" value="title">제목</option>
+					<option name="choice" value="id">아이디</option>
+					<input type="hidden" name="choice" id="choice"/>
+				</select>
+		        <input style="width:300px; class="form-control me-sm-2" type="text" name="search" placeholder="검색내용">
+		        <button id="submit1" class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
 		      </form>
 		    </div>
 		  </div>
@@ -140,23 +248,29 @@
 	</section>
 	
 	<div class="wrapper" >
-	<div align="middle">
-		<div style="width:60px; margin:0px 0px 70px 0px;"></div>
-		<div style="font-size: 15px; margin:0px 0px -30px -1330px;" class="bold";><span  style="font-size: 25px" class="txt_blue">
+	<div align="container" style="margin :0px 0px 150px 300px; border:0px solid; padding:100px">
+		<div style="width:1000px; margin:10px 200px 10px 10px;"></div>
+		<div style="font-size: 15px; margin:0px 500px 0px 0px;" class="bold";><span  style="font-size: 25px" class="txt_blue">
 		<%if(selinfo==null){%>전체<% }else{%>
-		<%=selinfo %><%} %></span>게시판</div>
+		<%=selinfo %><%} %>&nbsp&nbsp</span>게시판</div>
 		<%if(loginUser == null){%><br /><% }else{ %>
-		<button type="button" style="margin:0px 0px 0px 1370px;" class="btn btn-secondary btn-sm" onclick="location.href='./board_write.do'">글쓰기</button>
+		<button type="button" style="margin:0px 0px 0px 1650px;" class="btn btn-secondary btn-sm" onclick="location.href='./admin_board_write.do'">글쓰기</button>
 		<%} %>
-		<table style="width:60%; text-align: center;" class="table table-hover">
+		
+		<br /><br />
+		
+		<table style="width:90%; text-align: center;" class="table table-hover">
 		  <thead>
 		    <tr>
-		      <th scope="col">추천수</th>
+		    <%if(code == null || code.equals("BD001") || code.equals("BD098")){ %>
+		      <th scope="col">분류</th>
+		      <%}else{} %>
 		      <th scope="col">번호</th>
 		      <th scope="col">제목</th>
 		      <th scope="col">작성자</th>
 		      <th scope="col">일 시</th>
 		      <th scope="col">조회수</th>
+		      <th scope="col"><i class='bx bxs-like'></th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -189,6 +303,19 @@ $('#all_select').click(function() {
 	}
 });
 
+function myFunction(input) {
+	document.getElementById("choice").value = input;
+}
+
+window.onload = function() {
+	document.getElementById('submit1').onclick = function() {
+ 		if( document.wfrm.choice.value.trim() == '' ) {
+			alert( '분류를 선택하세요.' );
+			return false;
+		}
+		document.wfrm.submit();
+	};
+};
 </script>
 </body>
 </html>

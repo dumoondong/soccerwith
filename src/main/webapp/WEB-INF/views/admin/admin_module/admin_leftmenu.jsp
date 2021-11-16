@@ -29,63 +29,57 @@
 </div>
 <ul class="nav-links">
       <li>
-        <a href="#">
+        <a href="admin_main.do">
           <i class='bx bx-home' ></i>
           <span class="link_name">홈</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">홈</a></li>
+          <li><a class="link_name" href="admin_main.do">홈</a></li>
         </ul>
       </li>
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="admin_league.do">
             <i class='bx bx-collection' ></i>
             <span class="link_name">리그/컵</span>
           </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
+          <!-- <i class='bx bxs-chevron-down arrow' ></i> -->
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">리그/컵</a></li>
-          <li><a href="#">EPL</a></li>
-          <li><a href="leaguelaliga.do">라리가</a></li>
-          <li><a href="leagueserieA.do">세리에A</a></li>
-          <li><a href="leaguebundesliga.do">분데스리가</a></li>
-          <li><a href="#">K리그</a></li>
+         <!--  <li><a href="admin_league.do">EPL</a></li>
+          <li><a href="admin_leaguelaliga.do">라리가</a></li>
+          <li><a href="admin_leagueserieA.do">세리에A</a></li>
+          <li><a href="admin_leaguebundesliga.do">분데스리가</a></li>
+          <li><a href="#">K리그</a></li> -->
         </ul>
       </li>
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="/admnewstemplate.do">
             <i class='bx bx-book-alt' ></i>
             <span class="link_name">뉴스/소식</span>
           </a>
           <i class='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">뉴스/소식</a></li>
-          <li><a href="domestic.do">국내축구</a></li>
-          <li><a href="oversea.do">해외축구</a></li>
-          <li><a href="retire.do">은퇴선수</a></li>
-          <li><a href="youth.do">꿈나무들</a></li>
+          <li><a class="link_name" href="admnewstemplate.do">뉴스/소식</a></li>
+          <li><a href="admnewstemplate.do?classify=국내뉴스">국내뉴스</a></li>
+          <li><a href="admnewstemplate.do?classify=해외뉴스">해외뉴스</a></li>
+          <li><a href="admnewstemplate.do?classify=은퇴선수">은퇴선수</a></li>
+          <li><a href="admnewstemplate.do?classify=꿈나무들">꿈나무들</a></li>
         </ul>
       </li>
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="admin_board.do">
             <i class='bx bx-grid-alt'></i>
             <span class="link_name">게시판</span>
           </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
+          <!-- <i class='bx bxs-chevron-down arrow' ></i> -->
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">게시판</a></li>
-          <li><a href="#">전체</a></li>
-          <li><a href="#">축구</a></li>
-          <li><a href="#">축구동영상</a></li>
-          <li><a href="#">질문</a></li>
-          <li><a href="#">인기</a></li>
-          <li><a href="#">공지사항</a></li>
+        <li><a class="link_name" href="/board.do">게시판</a></li>
         </ul>
       </li>
       <%

@@ -18,19 +18,30 @@
 	String replycontent = to.getReplycontent();
 	if(rdate != null){
 		sbHtml.append( "<h2 class='mt-4'>답변내용</h2>" );
-		sbHtml.append( "<div style='width:700px; text-align: left'>" );
+		sbHtml.append( "<br />" );
+		sbHtml.append( "<div style='width:950px; text-align: left'>" );
+		
 		sbHtml.append( "<div class='input-group'>" );
-		sbHtml.append( "<span class='input-group-text' id='basic-addon1'>답변 날짜</span>" );
-		sbHtml.append( "<div class='form-control'  aria-label='Username' aria-describedby='basic-addon1'>"+rdate+"</div>" );
+		sbHtml.append( "<span style='background-color:white; border:0px;' class='col-md-2 btn btn-light' id='basic-addon1'>답변 날짜</span>" );
+		sbHtml.append( "<div style='background-color:white; border:0px;' class='col-md-3 btn btn-light'  aria-label='Username' aria-describedby='basic-addon1'>"+rdate+"</div>" );
 		sbHtml.append( "</div>" );
+		
+		sbHtml.append( "<hr />" );
+		
 		sbHtml.append( "<div class='input-group'>" );
-		sbHtml.append( "<span class='input-group-text' id='basic-addon1'>답변 제목</span>" );
-		sbHtml.append( "<div class='form-control'  aria-label='Username' aria-describedby='basic-addon1'>"+replytitle+"</div>" );
+		sbHtml.append( "<span style='background-color:white; border:0px;' class='col-md-2 btn btn-light' id='basic-addon1'>답변 제목</span>" );
+		sbHtml.append("&nbsp");
+		sbHtml.append( "<div style='background-color:white; border:0px; 'class='col-md-3 btn btn-light'  aria-label='Username' aria-describedby='basic-addon1'>"+replytitle+"</div>" );
 		sbHtml.append( "</div>" );
+		
+		sbHtml.append( "<hr />" );
+		
 		sbHtml.append( "<div class=input-group>" );
-		sbHtml.append( "<span class='input-group-text'>답변 내용</span>" );
+		sbHtml.append( "<span style='background-color:white; border:0px solid; margin-top:180px' class='col-md-2 btn btn-light'>답변 내용</span>" );
+		sbHtml.append("&nbsp");
 		sbHtml.append( "<div style='height:400px;' class='form-control'  aria-label='Username' aria-describedby='basic-addon1'>"+replycontent+"</div>" );
 		sbHtml.append( "</div>" );
+		
 		sbHtml.append( "</div><br /><br />" );
 	}
 %>
@@ -67,25 +78,36 @@
 	</section>
 	<div align="middle">
     	<h2 class="mt-4">문의내용</h2>
-    	<div style="width:700px; text-align: left">
+    	<br />
+    	<div style="width:950px; text-align: left">
 	    	<div class="input-group">
-			  <span class="input-group-text" id="basic-addon1">ID</span>
-			  <div class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=id %></div>
-			  <span class="input-group-text" id="basic-addon1">날짜</span>
-			  <div class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=adate %></div>
+			  <span style="background-color:white; border:0px;" class="col-md-2 btn btn-light" id="basic-addon1">ID</span>
+			  <div style="background-color:white; border:0px; color:gray;" class="col-md-3 btn btn-light"  aria-label="Username" aria-describedby="basic-addon1"><%=id %></div>
+			  <span style="background-color:white; border:0px;" class="col-md-2 btn btn-light" id="basic-addon1">날짜</span>
+			  <div style="background-color:white; border:0px; color:gray;" class="col-md-3 btn btn-light"  aria-label="Username" aria-describedby="basic-addon1"><%=adate %></div>
 			</div>	
+			
+			<hr />
+			
 			<div class="input-group">
-			  <span class="input-group-text" id="basic-addon1">문의 제목</span>
-			  <div class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=asktitle %></div>
+			  <span style="background-color:white; border:0px;" class="col-md-2 btn btn-light" id="basic-addon1">문의 제목</span>
+			  <div style="background-color:white; border:0px; color:gray;"class="col-md-3 btn btn-light"  aria-label="Username" aria-describedby="basic-addon1"><%=asktitle %></div>
 			</div>
+			
+			<hr />
+			
 			<div class="input-group">
-				<span class="input-group-text">문의 내용</span>
+				<span style="background-color:white; border:0px solid; margin-top:180px" class="col-md-2 btn btn-light">문의 내용</span> &nbsp
 				<div style="height:400px;" class="form-control"  aria-label="Username" aria-describedby="basic-addon1"><%=askcontent %></div>
 			</div>
+			<br />
+			
+			
 			<div class="form-input" style="text-align: right">
 				<button class="btn btn-secondary" onclick="location.href='./service.do?id=<%=loginUser %>'">돌아가기</button>
 			</div>
 		</div><br />
+		<hr style="height:3px; color:#000000;" />
 		<%=sbHtml %>
 	</div>
 <script>
